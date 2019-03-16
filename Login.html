@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Login ProGrowth</title>
+	
+    
+	<script src="js/jquery.js"></script>
+	
+
+	<link href="css/bootstrap.min.css" rel=stylesheet>
+	
+	
+	<script>
+		$(document).ready(function(){
+			
+
+			$("#login").click(function() {
+
+				var user = $("#user").val();
+				
+				var pass = $("#pass").val();
+				
+				var url = "/user/"+user;
+
+				$.getJSON(url, function(data) {
+							
+						
+				});
+
+			});
+
+		});
+
+	</script>
+
+   
+  </head>
+
+
+  <body>
+		
+
+  		<div id="painelBusca">
+            
+        <input id="user" class="form-control " type="text" placeholder="Usuário">
+        
+        <input id="senha" class="form-control " type="text" placeholder="Senha">
+		
+		<button id="login" class="btn btn-success ">Login</button>
+		
+
+		
+  </body>
+  
+</html>
