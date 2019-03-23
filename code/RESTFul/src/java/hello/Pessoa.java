@@ -7,9 +7,9 @@ public class Pessoa {
 	private String email;
 	private String telefone;
 	private String senha;
-	private String tipo;
+	private int tipo;
 	
-	public Pessoa(int id, String nome, String adress, String email, String telefone, String senha, String tipo) {
+	public Pessoa(int id, String nome, String adress, String email, String telefone, String senha, int tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -19,11 +19,11 @@ public class Pessoa {
 		this.tipo = tipo;
 	}
 	
-	public String getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 
