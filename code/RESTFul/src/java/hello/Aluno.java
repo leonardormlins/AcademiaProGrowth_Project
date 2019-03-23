@@ -8,7 +8,7 @@ public class Aluno extends Pessoa {
 	private List<Aula> aula;
 	
 	
-	public Aluno(int id, String nome, String adress, String email, String telefone,  String senha, String tipo, List<Modalidade> modalidade,
+	public Aluno(int id, String nome, String adress, String email, String telefone,  String senha, int tipo, List<Modalidade> modalidade,
 			List<Shape> historicoShape, List<Aula> aula) {
 		super(id, nome, adress, email, telefone, senha, tipo);
 		this.modalidade = modalidade;
