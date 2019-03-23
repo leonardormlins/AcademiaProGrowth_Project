@@ -6,7 +6,7 @@ public class Funcionario extends Pessoa{
 		
 	
 	public Funcionario(int id, String nome, String adress, String email, String telefone, String expediente,
-			String descricaoCargo, String senha, String tipo) {
+			String descricaoCargo, String senha, int tipo) {
 		super(id, nome, adress, email, telefone, senha, tipo);
 		this.expediente = expediente;
 		this.descricaoCargo = descricaoCargo;
