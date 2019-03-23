@@ -8,7 +8,7 @@ public class Professor extends Funcionario {
 	
 	
 	public Professor(int id, String nome, String adress, String email, String telefone, String expediente,
-			String descricaoCargo, List<Modalidade> modalidade, List<Aula> aula, String senha, String tipo) {
+			String descricaoCargo, List<Modalidade> modalidade, List<Aula> aula, String senha, int tipo) {
 		super(id, nome, adress, email, telefone, expediente, descricaoCargo, senha, tipo);
 		this.modalidade = modalidade;
 		this.aula = aula;
