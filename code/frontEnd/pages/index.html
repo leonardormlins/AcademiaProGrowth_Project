@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style/style.css">
+	</head>
+
+	<body>
+		<header>
+			<div class="Container">
+				<img src="style/logo.png">
+			</div>
+
+
+
+
+
+<script>
+		$(document).ready(function(){
+			$('form').submit(function(e){    
+				
+				e.preventDefault();
+				
+				var email = $('#email').val().trim();
+				
+				var senha = $('#senha').val().trim();
+				
+				
+				$.post("/Login.html", JSON.stringify({'email': email, 'senha': senha}), function(data){
+						
+			
+					if(data[0].id == 0){
+						window.location.href = '/Login.html';
+					} 
+					else if (data[0].tipo==0) {
+						parseInt(sessionStorage.setItem("tipo",data[0].tipo));
+						parseInt(sessionStorage.setItem("id",data[0].id));
+						window.location.href = '/Admin.html';
+					}
+					else if (data[0].tipo==1){
+						parseInt(sessionStorage.setItem("tipo",data[0].tipo));
+						parseInt(sessionStorage.setItem("id",data[0].id));
+						window.location.href = '/Professor.html';
+					}
+					else if (data[0].tipo==2){
+						parseInt(sessionStorage.setItem("tipo",data[0].tipo));
+						parseInt(sessionStorage.setItem("id",data[0].id));
+						window.location.href = '/Aluno.html';
+					}
+					else if (data[0].tipo==3){
+						parseInt(sessionStorage.setItem("tipo",data[0].tipo));
+						parseInt(sessionStorage.setItem("id",data[0].id));
+						window.location.href = '/Funcionario.html';
+					}
+						
+						
+				}, "json");
+				
+			});
+		});
+	</script>
+
+
+
+
+		</header>
+		
+		<div id="fundo_principal">
+			<div id="login">
+				
+				<!--
+				<form class="form-horizontal" method="post" id="form">
+					<p id="enunLogin">Login</p>
+					<input type="text" name="login"> <br><br>
+					<input type="password" name="password">	<br><br>
+					<div id="manterMe">
+						<input type="radio" name="keepLogin"> Mantenha-me conectado		
+					</div>
+					<br>
+					<input type="submit" value="Login" name="logar">
+				</form>-->
+
+				<form class="form-horizontal" method="post" id="form">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-md-4 control-label">Email</label>
+						<div class="col-md-4">
+							<input required="required" type="email" class="form-control" id="email" placeholder="Insira e-mail de usuário">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-md-4 control-label">Senha</label>
+						<div class="col-md-4">
+							<input required="required" type="password" class="form-control" id="password" placeholder="Insira senha">
+						</div>
+					</div>
+			
+					<button id="login" type="submit">Login</button>
+					<button id="cadastrar" type="submit">Cadastrar</button>
+				</form>
+
+
+			</div>
+		</div>
+
+		<footer>
+			<div class="container">
+				<p>Desenvolvido por DevGrowth.</p>
+			</div>
+		</footer>
+	</body>
+</html>
