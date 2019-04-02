@@ -11,6 +11,23 @@
 
 /* TAGS */
 
+h3{
+	margin-top: 15px;
+}
+h3:first-child{
+	margin-top: 0;
+}
+
+input{
+	margin: 2px;
+	line-height: 20px;
+}
+
+label{
+	width: 153px;
+	display: block;
+}
+
 header{
 	background-color: gray;
 	height: 114px;
@@ -35,7 +52,7 @@ h1{
 #fundo_principal{
 	background-image: url('workgym.png');
 	background-size: 100%;
-	min-height: 600px;
+	min-height: 650px;
 }
 
 #nomePag{
@@ -46,15 +63,23 @@ h1{
 }
 
 #login{
-	width: 300px;
-	height: 250px;
+	width: 250px;
+	height: 230px;
 	background-color: white;
 	float: right;
 }
 
+#emailBox{
+	width: 180px;
+}
+
+#passwordBox{
+	width: 180px;
+}
+
 #formLogin{
-	padding-top: 50px;
-	padding-left: 70px;
+	padding-top: 60px;
+	padding-left: 50px;
 }
 
 #enunLogin{
@@ -62,12 +87,44 @@ h1{
 	padding-bottom: 10px;
 }
 
+#formBlock{
+	margin-top: 20px;
+	margin-left: 35px;
+	display: block;
+}
+
+#sexoOp{
+	display: block;
+	width: 90px;
+}
+
+#loginButton{
+	width: 60px;
+	height: 30px;
+	margin-top: 8px;
+	margin-left: 97px;
+}
+
+#cadastroButton{
+	width: 90px;
+	height: 45px;
+	margin-top: 20px;
+	margin-left: 300px;
+}
+
+#linkCadastrar{
+	margin-top: 40px;
+	margin-left: 50px;
+	display: block;
+	font-size: 14px;
+}
+
 #manterMe{
 	font-size: 12px;
 }
 
 #formRegister{
-	padding-top: 80px;
+	padding-top: 70px;
 	padding-left: 100px;
 	padding-right: 40px;
 	padding-bottom: 40px;
@@ -84,8 +141,12 @@ h1{
 /* CLASS */
 
 .Container{
-	width: 1100px;
+	width: 1200px;
 	margin: auto;
 }
 
-
+.field{
+	margin-top: 8px;
+	display: flex;
+	align-items: center;
+}
