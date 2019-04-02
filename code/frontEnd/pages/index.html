@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>
+			AcademiaProGrowth
+		</title>
 		<link rel="stylesheet" type="text/css" href="style/style.css">
 	</head>
 
@@ -78,23 +81,27 @@
 					<br>
 					<input type="submit" value="Login" name="logar">
 				</form>-->
-
-				<form class="form-horizontal" method="post" id="form">
-					<div class="form-group">
-						<label for="inputEmail3" class="col-md-4 control-label">Email</label>
-						<div class="col-md-4">
-							<input required="required" type="email" class="form-control" id="email" placeholder="Insira e-mail de usuário">
+				
+				<div id="formBlock">
+					<form class="form-horizontal" method="post" id="form">
+						<div class="form-group">
+							<label for="inputEmail3" class="col-md-4 control-label">Email</label>
+							<div class="col-md-4">
+								<input required="required" type="email" class="form-control" id="emailBox" placeholder="Insira e-mail">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputPassword3" class="col-md-4 control-label">Senha</label>
-						<div class="col-md-4">
-							<input required="required" type="password" class="form-control" id="password" placeholder="Insira senha">
+						<div class="form-group">
+							<label for="inputPassword3" class="col-md-4 control-label">Senha</label>
+							<div class="col-md-4">
+								<input required="required" type="password" class="form-control" id="passwordBox" placeholder="Insira senha">
+							</div>
 						</div>
+				</div>
+				
+					<button id="loginButton" type="submit">Login</button>
+					<div>
+						<a id="linkCadastrar" href="cadastro.html">Cadastrar</a>
 					</div>
-			
-					<button id="login" type="submit">Login</button>
-					<button id="cadastrar" type="submit">Cadastrar</button>
 				</form>
 
 
