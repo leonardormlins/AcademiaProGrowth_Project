@@ -30,9 +30,10 @@ label{
 
 header{
 	background-color: gray;
-	height: 114px;
+	height: 116px;
 	color: white;
 	font-weight: bold;
+	box-shadow: 0px 1px 3px #001; 
 }
 
 footer{
@@ -40,7 +41,8 @@ footer{
 	height: 50px;
 	text-align: center;
 	font-size: 14px;
-	padding-top:10px ; 
+	padding-top:10px;
+	box-shadow: 0px 1px 3px #001; 
 }
 
 h1{ 
@@ -67,6 +69,7 @@ h1{
 	height: 230px;
 	background-color: white;
 	float: right;
+	box-shadow: 0px 1px 3px #001;
 }
 
 #emailBox{
@@ -136,6 +139,11 @@ h1{
 	margin-left: 300px;
 	margin-right: 300px;
 	min-height: 600px;
+	box-shadow: 0px 3px 5px #001;
+}
+
+#logo{
+	box-shadow: 0px 1px 3px #001;
 }
 
 /* CLASS */
