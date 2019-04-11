@@ -56,6 +56,13 @@ public class Model {
 		}
 		return null;
 	}
+	
+	public List<Aula> buscarAulasAluno(String user){
+		for(Aluno aluno: alunos) {
+			if(aluno.getEmail()==user) return aluno.getAula();
+		}
+		return null;
+	}
 
 
 }
