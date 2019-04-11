@@ -5,6 +5,36 @@
 			Bem vindo!
 		</title>
 		<link rel="stylesheet" type="text/css" href="style/style.css">
+	<script src="js/jquery.js"></script>
+
+
+	<script>
+	
+		$(document).ready(function(){
+			
+			
+			var user = sessionStorage.getItem("nome");
+				
+					
+			var url = "/aluno/"+user+"/aulas";
+				
+					
+				$.getJSON(user, function(data) {
+						
+						var itens = [];
+						
+						
+						
+					itens.push("<tr> <td>"+ data.descricao +"</td><td>"+ data.data + "</td><td>"+ data.duracao + "</td><td>"+ data.modalidade.descricao + "</td></tr>");
+							
+						
+									
+						$("#tabelaAulas").append(itens);
+						
+				});
+			});
+	</script>	
+		
 	</head>
 
 	<body>
@@ -21,6 +51,22 @@
 			</div>
 
 		</div>
+		
+		<table class="table table-bordered"> 
+			<caption>Aulas</caption>
+				<thead>
+					<tr> 
+						<th>Descricao</th>
+						<th>Data</th> 
+						<th>Duracao</th> 
+						<th>Modalidade</th> 
+					</tr> 
+				</thead> 
+				
+				<tbody id="tabelaAulas"> 
+					
+				</tbody> 
+		</table>
 
 		<footer>
 			<div class="container">
