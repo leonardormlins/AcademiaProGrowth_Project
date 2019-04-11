@@ -30,6 +30,8 @@ public class MainServer {
 		
 		controller.mostrarAulas();
 		controller.loginUser();
+	    	controller.buscarAulasAluno();
+
 		
     }
     
