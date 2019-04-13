@@ -33,7 +33,7 @@ public class Controller {
 	}
 		
 	public void buscarAulasAluno(){
-		get(""/aluno/:user/aulas"", (req, res) -> {
+		get("/aulas/:user", (req, res) -> {
 			List<Aula> aulasEncontradas = model.buscarAulasAluno(req.params(":user"));	
 			return new Gson().toJson(aulasEncontradas);	
 		});
