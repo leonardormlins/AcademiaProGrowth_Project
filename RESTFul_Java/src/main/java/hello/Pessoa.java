@@ -7,7 +7,7 @@ public class Pessoa {
 	private String email;
 	private String telefone;
 	private String senha;
-	private int tipo; //0=admin, 1=professor, 2=aluno, 3=usuário
+	private int tipo; //0=admin, 1=professor, 2=aluno, 3=funcionario
 	
 	public Pessoa(int id, String nome, String adress, String email, String telefone, String senha, int tipo) {
 		super();
