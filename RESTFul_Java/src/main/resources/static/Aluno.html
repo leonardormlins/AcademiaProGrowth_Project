@@ -4,30 +4,30 @@
 		<title>
 			Bem vindo!
 		</title>
-		<link rel="stylesheet" type="text/css" href="style/style.css">
+		<link rel="stylesheet" type="text/css" href="static/css/style.css">
 	<script src="js/jquery.js"></script>
 
 
 	<script>
 	
-		$(document).ready(function(){
+		$( window ).on( "load", function(){
 			
 			
 			var user = sessionStorage.getItem("nome");
 				
-					
-			var url = "/aluno/"+user+"/aulas";
 				
+			var url = "/aulas/"+user;
+				
+			
+				$.getJSON(url, function(data) {
 					
-				$.getJSON(user, function(data) {
-						
 						var itens = [];
 						
+						$.each(data, function(i){
 						
-						
-					itens.push("<tr> <td>"+ data.descricao +"</td><td>"+ data.data + "</td><td>"+ data.duracao + "</td><td>"+ data.modalidade.descricao + "</td></tr>");
+							itens.push("<tr> <td>"+ this.descricao +"</td><td>"+ this.data + "</td><td>"+ this.duracao + "</td><td>"+ this.modalidade.descricao + "</td></tr>");
 							
-						
+						});
 									
 						$("#tabelaAulas").append(itens);
 						
@@ -40,7 +40,7 @@
 	<body>
 		<header>
 			<div class="Container">
-				<img id="logo" src="style/logo.png">
+				<img id="logo" src="css\logo.png">
 			</div>
 
 		</header>
