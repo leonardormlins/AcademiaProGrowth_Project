@@ -15,6 +15,7 @@ public class Aula {
 		this.descricao = descricao;
 		this.data = data;
 		this.duracao = duracao;
+		this.modalidade = modalidade;
 	}
 	
 	
