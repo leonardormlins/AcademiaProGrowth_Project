@@ -16,14 +16,6 @@ public class Controller {
 	}
 	
 	
-	
-	/**public void mostrarAulas(){
-		get("/:usuario/aulas", (req, res) -> {
-			List<Aula> aulas = model.aulaAluno(req.params(":usuario"));
-			return new Gson().toJson(aulas);
-		});
-	}**/
-	
 	public void loginUser(){
 		get("/login/:email/:senha", (req, res) -> {
 			User encontrado = model.loginUser(req.params(":email"),req.params(":senha"));	

@@ -52,11 +52,27 @@ public class Model {
 		}
 	}
 
+	public boolean isAlunoDisponivel(String email){
+		Query query = alunos.query();
+		query.constrain(Aluno.class);
+	    List<Aluno> todosAlunos = query.execute();
+	    
+	    for(Aluno aluno: todosAlunos){
+	    	if(aluno.getEmail().equals(email)) return false;
+	    }
+	    
+	    return true;
+	}
+
 
 	//ok
-	public void addAluno (Aluno aluno) {
-		alunos.store(aluno);
-		alunos.commit();
+	public boolean addAluno (Aluno aluno) {
+		if (isAlunoDisponivel(aluno.getEmail())) {
+			alunos.store(aluno);
+			alunos.commit();
+			return true;
+		}
+		return false;
 	}
 
 	//ok
