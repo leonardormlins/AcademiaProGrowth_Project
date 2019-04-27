@@ -4,23 +4,45 @@ package hello;
 import java.util.List;
 import java.util.LinkedList;
 
+import com.db4o.Db4oEmbedded;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import com.db4o.query.Query;
+
+
 public class Model {
 
-	private List<Aluno> alunos = new LinkedList<Aluno>();
+	
+	ObjectContainer alunos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/alunos.db4o");
+	ObjectContainer aulas = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/aulas.db4o");
+	
 	private List<User> users = new LinkedList<User>();
 
 	
-	static List<Aula> aulas = new LinkedList<Aula>();
-	    
+	
+	//ok
 	public void addAula (Aula aula) {
-			aulas.add(aula);
+			aulas.store(aula);
+			aulas.commit();
 		}
-	  
+	 
+	
+	//ok
 	public void inclAula (String nAluno, String nAula) {
-		for (Aluno aluno: alunos ) {
+		Query query1 = alunos.query();
+		query1.constrain(Aluno.class);
+		
+		List<Aluno> todosAlunos = query1.execute();
+		
+		Query query2 = aulas.query();
+		query2.constrain(Aula.class);
+		
+		List<Aula> todasAulas = query2.execute();
+		
+		for (Aluno aluno: todosAlunos) {
 			if (aluno.getNome().equals(nAluno))
 			{
-				for (Aula aula: aulas) {
+				for (Aula aula: todasAulas) {
 					if (aula.getDescricao().equals(nAula)){
 						aluno.addAula(aula);
 					}
@@ -31,13 +53,20 @@ public class Model {
 	}
 
 
+	//ok
 	public void addAluno (Aluno aluno) {
-		alunos.add(aluno);
+		alunos.store(aluno);
+		alunos.commit();
 	}
 
-	
-	public List<Aula> aulaAluno(String email){
-		for (Aluno aluno:alunos) {
+	//ok
+	public List<Aula> buscarAulasAluno(String email){
+		Query query = alunos.query();
+		query.constrain(Aluno.class);
+		
+		List<Aluno> todosAlunos = query.execute();
+		
+		for (Aluno aluno:todosAlunos) {
 			if (aluno.getEmail().equals(email))
 				return aluno.getAula();
 		}
@@ -57,12 +86,6 @@ public class Model {
 		return null;
 	}
 	
-	public List<Aula> buscarAulasAluno(String user){
-		for(Aluno aluno: alunos) {
-			if(aluno.getEmail().equals(user)) return aluno.getAula();
-		}
-		return null;
-	}
 
 
 }

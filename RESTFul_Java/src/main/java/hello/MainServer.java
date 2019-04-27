@@ -28,7 +28,6 @@ public class MainServer {
 		inicializarAlunos();
 		Controller controller = new Controller(model);
 		
-		controller.mostrarAulas();
 		controller.loginUser();
 	    controller.buscarAulasAluno();
 

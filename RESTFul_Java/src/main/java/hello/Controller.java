@@ -17,12 +17,12 @@ public class Controller {
 	
 	
 	
-	public void mostrarAulas(){
+	/**public void mostrarAulas(){
 		get("/:usuario/aulas", (req, res) -> {
 			List<Aula> aulas = model.aulaAluno(req.params(":usuario"));
 			return new Gson().toJson(aulas);
 		});
-	}
+	}**/
 	
 	public void loginUser(){
 		get("/login/:email/:senha", (req, res) -> {
@@ -33,8 +33,8 @@ public class Controller {
 	}
 		
 	public void buscarAulasAluno(){
-		get("/aulas/:user", (req, res) -> {
-			List<Aula> aulasEncontradas = model.buscarAulasAluno(req.params(":user"));	
+		get("/aulas/:email", (req, res) -> {
+			List<Aula> aulasEncontradas = model.buscarAulasAluno(req.params(":email"));	
 			return new Gson().toJson(aulasEncontradas);	
 		});
 	}
