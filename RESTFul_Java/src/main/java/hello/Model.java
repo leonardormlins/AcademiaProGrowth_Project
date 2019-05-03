@@ -21,6 +21,7 @@ public class Model {
 	ObjectContainer acessos = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/acessos.db4o");
 	ObjectContainer shapes = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/shapes.db4o");
 	ObjectContainer modalidades = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/modalidades.db4o");
+	ObjectContainer codigosAcesso = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/codigosAcesso.db4o");
 	
 	private List<User> users = new LinkedList<User>();
 
