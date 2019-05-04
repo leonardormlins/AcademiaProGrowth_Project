@@ -30,5 +30,12 @@ public class Controller {
 			return new Gson().toJson(aulasEncontradas);	
 		});
 	}
+	
+	public void cadastrar(){
+		get("/cadpessoa/:nome/:senha/:genero/:email/:ender/:tel/:cpf", (req, res) -> {
+				model.cadastrarAluno(req.params(":nome"),req.params(":senha"),req.params(":genero"),req.params(":email"),req.params(":ender"),req.params(":tel"),req.params(":cpf"));	
+				return new Gson().toJson("Cadastrado!");
+		});
+	}
 
 }
