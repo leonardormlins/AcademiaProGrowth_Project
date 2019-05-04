@@ -103,11 +103,14 @@ public class Model {
 		users.add(user);
 	}
 	
-	public User loginUser(String username, String senha)
+	public Aluno loginUser(String email, String senha)
 	{
+		Query query1 = alunos.query();
+		query1.constrain(Aluno.class);
 		
-		for(User user:users) {
-			if (user.getNome().equals(username)&&user.getSenha().equals(senha))return user;
+		List<Aluno> todosAlunos = query1.execute();
+		for(Aluno pessoa:todosAlunos) {
+			if (pessoa.getEmail().equals(email)&&pessoa.getSenha().equals(senha))return pessoa;
 		}
 		return null;
 	}
