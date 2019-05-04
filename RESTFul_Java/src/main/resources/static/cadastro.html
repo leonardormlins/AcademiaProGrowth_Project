@@ -5,6 +5,38 @@
 			Cadastrar
 		</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	<script src="js/jquery.js"></script>
+	
+	<script>
+		$(document).ready(function(){
+			
+			$("#cadastroButton").click(function() {
+				
+				var nome = $("#nome").val();
+				var genero = $("input[name='sexo']:checked" ).val();
+				var senha = $("#senha").val();
+				var email = $("#email").val();
+				var ender = $("#rua").val()+", "+$("#bairro").val()+", "+$("#cidade").val()+", "+ $("#estado").val();
+				var tel = $("#telef").val();
+				var cpf = $("#cpf").val();
+				
+				
+										
+				var url = "/cadpessoa/"+nome+"/"+senha+"/"+genero+"/"+email+"/"+ender+"/"+tel+"/"+cpf;
+				
+				alert(url);
+				
+				$.getJSON(url, function(data) {
+					alert("Cadastrado!");
+					window.location.href = '/index.html';
+						
+				});
+			});
+		});
+		
+	</script>
+		
 	</head>
 
 	<body>
@@ -22,7 +54,11 @@
 						<h3>BASICO</h3> <br>
 						<div class="field">	
 							<label class="formulario">Nome Completo</label>
-							<input type="text" name="nomeCompleto" size="60px"> 
+							<input id="nome" type="text" name="nomeCompleto" size="60px"> 
+						</div>
+						<div class="field">	
+							<label class="formulario">Senha</label>
+							<input id="senha" type="text" name="senha" size="60px"> 
 						</div>
 						<div class="field">
 							<label class="formulario">Gênero</label>
@@ -31,36 +67,36 @@
 						</div>
 						<div class="field">
 							<label class="formulario">Endereço de email</label>
-							<input type="text" name="email" size="35px"> 
+							<input id="email" type="text" name="email" size="35px"> 
 						</div>
 						<div class="field">
 							<label class="formulario">Telefone</label>
-							<input type="text" name="tel" size="35px"> 	
+							<input id="telef" type="text" name="tel" size="35px"> 	
 						</div>
 
 
 						<h3>ENDEREÇO</h3>
 						<div class="field">
 							<label class="formulario">Rua </label>
-							<input type="text" name="rua" size="40px">
+							<input id="rua" type="text" name="rua" size="40px">
 						</div>
 						<div class="field">
 							<label class="formulario">Bairro</label>
-							<input type="text" name="bairro" size="40px">
+							<input "bairro" type="text" name="bairro" size="40px">
 						</div>
 						<div class="field">
 							<label class="formulario">Cidade</label>
-							<input type="text" name="cidade" size="40px">
+							<input id="cidade" type="text" name="cidade" size="40px">
 						</div>
 						<div class="field">
 							<label class="formulario">Estado</label>
-							<input type="text" name="estado" size="40px">
+							<input id="estado" type="text" name="estado" size="40px">
 						</div>
 
 						<h3>DOCUMENTOS</h3>
 						<div class="field">
 							<label class="formulario">CPF </label>
-							<input type="text" name="cpf" size="15px">
+							<input id="cpf" type="text" name="cpf" size="15px">
 						</div>
 						<div>
 							<button id="cadastroButton" type="submit">Cadastrar</button>
