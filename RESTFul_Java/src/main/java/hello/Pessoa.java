@@ -7,16 +7,19 @@ public class Pessoa {
 	private String email;
 	private String telefone;
 	private String senha;
+	private char genero;
 	private int tipo; //0=admin, 1=professor, 2=aluno, 3=funcionario
 	
-	public Pessoa(int id, String nome, String adress, String email, String telefone, String senha, int tipo) {
+	public Pessoa(int id, String nome, String adress, String email, String telefone, String senha, char genero, int tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.adress = adress;
 		this.email = email;
 		this.telefone = telefone;
+		this.senha = senha;
 		this.tipo = tipo;
+		this.genero = genero;
 	}
 	
 	public int getTipo() {
@@ -66,5 +69,13 @@ public class Pessoa {
 		this.senha = senha;
 	}
 
+	public char getGenero() {
+		return genero;
+	}
+
+	public void setGenero (char genero) {
+		this.genero = genero;
+	}
+	
 	
 }
