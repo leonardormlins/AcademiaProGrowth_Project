@@ -37,5 +37,11 @@ public class Controller {
 				return new Gson().toJson("Cadastrado!");
 		});
 	}
+	
+		public void mostAlunos(){
+		get("/most/aluno/:id", (req, res) -> {
+			return new Gson().toJson(model.mostAlunos(req.params(":id")));	
+		});
+	}
 
 }
