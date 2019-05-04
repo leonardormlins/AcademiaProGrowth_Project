@@ -18,7 +18,7 @@ public class Controller {
 	
 	public void loginUser(){
 		get("/login/:email/:senha", (req, res) -> {
-			User encontrado = model.loginUser(req.params(":email"),req.params(":senha"));	
+			Aluno encontrado = model.loginUser(req.params(":email"),req.params(":senha"));	
 			return new Gson().toJson(encontrado);
 			
 		});
