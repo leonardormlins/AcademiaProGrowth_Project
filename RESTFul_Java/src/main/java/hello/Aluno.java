@@ -8,9 +8,9 @@ public class Aluno extends Pessoa {
 	private List<Aula> aulas;
 	
 	
-	public Aluno(int id, String nome, String adress, String email, String telefone,  String senha, int tipo, List<Modalidade> modalidade,
+	public Aluno(int id, String nome, String adress, String email, String telefone,  String senha, char genero, int tipo, List<Modalidade> modalidade,
 			List<Shape> historicoShape, List<Aula> aulas) {
-		super(id, nome, adress, email, telefone, senha, tipo);
+		super(id, nome, adress, email, telefone, senha, genero, tipo);
 		this.modalidade = modalidade;
 		this.historicoShape = historicoShape;
 		this.aulas = aulas;
