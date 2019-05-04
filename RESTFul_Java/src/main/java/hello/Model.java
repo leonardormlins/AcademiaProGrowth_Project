@@ -119,6 +119,12 @@ public class Model {
 	}
 
 	
-
+	public List<Aluno> mostAlunos (String idAl) {
+		Query query1 = alunos.query();
+		query1.constrain(Aluno.class);
+		
+		return query1.execute();
+		
+		}
 
 }
