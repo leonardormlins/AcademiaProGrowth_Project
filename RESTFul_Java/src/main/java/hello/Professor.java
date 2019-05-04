@@ -8,8 +8,8 @@ public class Professor extends Funcionario {
 	
 	
 	public Professor(int id, String nome, String adress, String email, String telefone, String expediente,
-			String descricaoCargo, List<Modalidade> modalidade, List<Aula> aula, String senha, int tipo) {
-		super(id, nome, adress, email, telefone, expediente, descricaoCargo, senha, tipo);
+			String descricaoCargo, List<Modalidade> modalidade, List<Aula> aula, String senha, char genero, int tipo) {
+		super(id, nome, adress, email, telefone, expediente, descricaoCargo, senha, genero, tipo);
 		this.modalidade = modalidade;
 		this.aula = aula;
 	}
@@ -29,3 +29,4 @@ public class Professor extends Funcionario {
 	
 	
 }
+
