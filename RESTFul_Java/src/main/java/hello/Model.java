@@ -75,6 +75,9 @@ public class Model {
 	//ok
 	public boolean addAluno (Aluno aluno) {
 		if (isAlunoDisponivel(aluno.getEmail())) {
+			aluno.addAula(new Aula (null, "Zumba", "segunda", "50min", new Modalidade (01,"zumba")));
+			aluno.addAula(new Aula (null, "Boxe", "terÃ§a", "50min",  new Modalidade (02,"boxe")));
+			aluno.addAula(new Aula (null, "Spinning", "Quarta", "50min", new Modalidade (03,"spinning")));
 			alunos.store(aluno);
 			alunos.commit();
 			return true;
