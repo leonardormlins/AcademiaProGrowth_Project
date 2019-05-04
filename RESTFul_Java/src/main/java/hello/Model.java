@@ -112,6 +112,13 @@ public class Model {
 		return null;
 	}
 	
+	public void cadastrarAluno(String nome, String senha, String genero, String email, String ender, String tel,String cpf) {
+
+		addAluno(new Aluno (Integer.valueOf(cpf),nome,ender,email,tel, senha, genero.charAt(0),1, null, null, 
+    			new LinkedList<Aula>()));
+	}
+
+	
 
 
 }
