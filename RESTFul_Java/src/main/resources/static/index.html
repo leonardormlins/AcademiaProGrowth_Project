@@ -5,13 +5,6 @@
 			AcademiaProGrowth
 		</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
-
-	<body>
-		<header>
-			<div class="Container">
-				<img id="logo" src="css/logo.png">
-			</div>
 
 <script src="js/jquery.js"></script>
 
@@ -32,27 +25,27 @@
 				$.getJSON(url, function(data) {{
 						
 			
-					if(data.tipo == null){
+					if(data.tipo == 0){
 						window.location.href = '/index.html';
 					} 
 					else if (data.tipo==0) {
 						parseInt(sessionStorage.setItem("tipo",data.tipo));
-						parseInt(sessionStorage.setItem("email",data.email));
+						parseInt(sessionStorage.setItem("nome",data.nome));
 						window.location.href = '/Admin.html';
 					}
 					else if (data.tipo==1){
 						parseInt(sessionStorage.setItem("tipo",data.tipo));
-						parseInt(sessionStorage.setItem("email",data.email));
+						parseInt(sessionStorage.setItem("nome",data.nome));
 						window.location.href = '/Aluno.html';
 					}
 					else if (data.tipo==2){
 						parseInt(sessionStorage.setItem("tipo",data.tipo));
-						parseInt(sessionStorage.setItem("email",data.email));
+						parseInt(sessionStorage.setItem("nome",data.nome));
 						window.location.href = '/Professor.html';
 					}
 					else if (data.tipo==3){
 						parseInt(sessionStorage.setItem("tipo",data.tipo));
-						parseInt(sessionStorage.setItem("email",data.email));
+						parseInt(sessionStorage.setItem("nome",data.nome));
 						window.location.href = '/Funcionario.html';
 					}
 				}	
@@ -66,11 +59,35 @@
 
 
 
+	</head>
+
+	<body>
+		<header>
+			<div class="Container">
+				<img id="logo" src="css/logo.svg">
+				<div id = "menuIndex">
+					<nav id="menu">
+						<ul>
+					    	<li><a href="index.html">Home</a></li>
+					        <li><a href="preCadastro.html">Cadastrar</a></li>
+					        <li><a href="logon.html">Login</a></li>
+					        <li><a href="sobre.html">Sobre</a></li>
+					    </ul>
+					</nav>
+				</div>
+			</div>
+
+			
+
+
+
 		</header>
 		
 		<div id="fundo_principal">
-			<div id="login">				
+			<div id="login">
+				<h3 id="tituloLogon">Logar</h3>	
 				<div id="formBlock">
+
 					<form class="form-horizontal" method="post" id="form">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-md-4 control-label">Email</label>
@@ -87,9 +104,6 @@
 				</div>
 				
 					<button id="loginButton" type="submit">Login</button>
-					<div>
-						<a id="linkCadastrar" href="cadastro.html">Cadastrar</a>
-					</div>
 				</form>
 
 
