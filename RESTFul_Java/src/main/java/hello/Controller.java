@@ -38,10 +38,18 @@ public class Controller {
 		});
 	}
 	
-		public void mostAlunos(){
-		get("/most/aluno/:id", (req, res) -> {
-			return new Gson().toJson(model.mostAlunos(req.params(":id")));	
+	public void mostAlunos(){
+		get("/most/aluno/", (req, res) -> {
+			return new Gson().toJson(model.mostAlunos());	
 		});
+	}
+		
+		
+	public void alterar(){
+			get("/alterar/:nome/:senha/:genero/:email/:ender/:tel/:cpf", (req, res) -> {
+					model.alteraAluno(req.params(":nome"),req.params(":senha"),req.params(":genero"),req.params(":email"),req.params(":ender"),req.params(":tel"),req.params(":cpf"));	
+					return new Gson().toJson("Alterado!");
+			});
 	}
 
 }
