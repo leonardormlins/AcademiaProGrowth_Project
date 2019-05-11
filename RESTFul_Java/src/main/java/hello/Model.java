@@ -122,12 +122,34 @@ public class Model {
 	}
 
 	
-	public List<Aluno> mostAlunos (String idAl) {
+	public List<Aluno> mostAlunos () {
 		Query query1 = alunos.query();
 		query1.constrain(Aluno.class);
+		List<Aluno> todosAlunos = query1.execute();
+		return todosAlunos;
 		
-		return query1.execute();
-		
+	}
+	
+	public Aluno buscaAluno(int cpf) {
+		Query query = alunos.query();
+		query.constrain(Aluno.class);
+		List<Aluno> todosAlunos = query.execute();
+		for (Aluno aluno: todosAlunos) {
+			if (aluno.getId()==cpf) return aluno;
 		}
+		return null;
+	}
+	
+	public void alteraAluno(String nome, String senha, String genero, String email, String ender, String tel, String cpf) {
+		Aluno aluno = buscaAluno(Integer.valueOf(cpf));
+		if (!(aluno.getNome().equals(nome))) aluno.setNome(nome);
+		if (!(aluno.getSenha().equals(senha))) aluno.setSenha(senha);
+		if (!(aluno.getGenero()==genero.charAt(0))) aluno.setGenero(genero.charAt(0));
+		if (!(aluno.getEmail().equals(email))) aluno.setEmail(email);
+		if (!(aluno.getAdress().equals(ender))) aluno.setAdress(ender);
+		if (!(aluno.getTelefone().equals(tel))) aluno.setTelefone(tel);
+		alunos.store(aluno);
+		alunos.commit();
+	}
 
 }
