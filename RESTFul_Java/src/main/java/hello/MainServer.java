@@ -29,9 +29,11 @@ public class MainServer {
 		Controller controller = new Controller(model);
 		
 		controller.loginUser();
-	    controller.buscarAulasAluno();
-	    
-	    	 controller.cadastrar();
+	    	controller.buscarAulasAluno();
+	    	controller.cadastrar();
+	    	controller.mostAlunos();
+	    	controller.alterar();
+
 
 		
     }
