@@ -23,18 +23,15 @@ public class Model {
 	ObjectContainer modalidades = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/modalidades.db4o");
 	ObjectContainer codigosAcesso = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/codigosAcesso.db4o");
 	
-	private List<User> users = new LinkedList<User>();
-
 	
-	
-	//ok
+	//adiciona nova aula no bd
 	public void addAula (Aula aula) {
 			aulas.store(aula);
 			aulas.commit();
 		}
 	 
 	
-	//ok
+	//inclui aula ao aluno
 	public void inclAula (String nAluno, String nAula) {
 		Query query1 = alunos.query();
 		query1.constrain(Aluno.class);
@@ -59,6 +56,7 @@ public class Model {
 		}
 	}
 
+	//verifica se o e-mail está disponível para cadastro do aluno
 	public boolean isAlunoDisponivel(String email){
 		Query query = alunos.query();
 		query.constrain(Aluno.class);
@@ -72,9 +70,10 @@ public class Model {
 	}
 
 
-	//ok
+	//cadastra aluno
 	public boolean addAluno (Aluno aluno) {
 		if (isAlunoDisponivel(aluno.getEmail())) {
+			//verificar as aulas que já estão inseridas
 			aluno.addAula(new Aula (null, "Zumba", "segunda", "50min", new Modalidade (01,"zumba")));
 			aluno.addAula(new Aula (null, "Boxe", "terÃ§a", "50min",  new Modalidade (02,"boxe")));
 			aluno.addAula(new Aula (null, "Spinning", "Quarta", "50min", new Modalidade (03,"spinning")));
@@ -85,7 +84,7 @@ public class Model {
 		return false;
 	}
 
-	//ok
+	//retorna as aulas por aluno
 	public List<Aula> buscarAulasAluno(String email){
 		Query query = alunos.query();
 		query.constrain(Aluno.class);
@@ -99,10 +98,8 @@ public class Model {
 		return null;
 	}
 	
-	public void addUser(User user){
-		users.add(user);
-	}
 	
+	//login
 	public Aluno loginUser(String email, String senha)
 	{
 		Query query1 = alunos.query();
@@ -115,6 +112,7 @@ public class Model {
 		return null;
 	}
 	
+	//cadastro de aluno
 	public void cadastrarAluno(String nome, String senha, String genero, String email, String ender, String tel,String cpf) {
 
 		addAluno(new Aluno (Integer.valueOf(cpf),nome,ender,email,tel, senha, genero.charAt(0),1, null, null, 
@@ -122,6 +120,7 @@ public class Model {
 	}
 
 	
+	//retorna todos os alunos cadastrados
 	public List<Aluno> mostAlunos () {
 		Query query1 = alunos.query();
 		query1.constrain(Aluno.class);
@@ -130,6 +129,7 @@ public class Model {
 		
 	}
 	
+	//busca aluno por cpf
 	public Aluno buscaAluno(int cpf) {
 		Query query = alunos.query();
 		query.constrain(Aluno.class);
@@ -140,6 +140,7 @@ public class Model {
 		return null;
 	}
 	
+	//altera infos do aluno
 	public void alteraAluno(String nome, String senha, String genero, String email, String ender, String tel, String cpf) {
 		Aluno aluno = buscaAluno(Integer.valueOf(cpf));
 		if (!(aluno.getNome().equals(nome))) aluno.setNome(nome);
