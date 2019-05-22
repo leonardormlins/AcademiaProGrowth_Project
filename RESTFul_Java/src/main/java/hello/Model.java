@@ -152,5 +152,29 @@ public class Model {
 		alunos.store(aluno);
 		alunos.commit();
 	}
+	
+	//desmatricula aulas de aluno
+	public Aula desmatAulaAluno(String email, String nAula){
+		Query query = alunos.query();
+		query.constrain(Aluno.class);
+		
+		List<Aluno> todosAlunos = query.execute();
+		
+		for (Aluno aluno:todosAlunos) {
+			if (aluno.getEmail().equals(email)) {
+				for (Aula aula: aluno.getAula()) {
+					if (aluno.getAula().indexOf(aula)==Integer.valueOf(nAula)){
+						Aula aulaRem=aula;
+						aluno.getAula().remove(aula);
+						alunos.store(aluno);
+						alunos.commit();
+						return aulaRem;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
 
 }
