@@ -43,6 +43,13 @@ public class Controller {
 			return new Gson().toJson(model.mostAlunos());	
 		});
 	}
+	
+	public void desmatAulaAluno(){
+		get("/desmat/:email/aula/:id", (req, res) -> {
+			return new Gson().toJson(model.desmatAulaAluno(req.params(":email"),req.params(":id")));	
+		});
+	}
+	
 		
 		
 	public void alterar(){
