@@ -10,29 +10,60 @@
 
 	<script>
 	
-		$( window ).on( "load", function(){
-			
-			
-			var user = sessionStorage.getItem("email");
-				
-				
-			var url = "/aulas/"+user;
-				
-			
-				$.getJSON(url, function(data) {
-					
-						var itens = [];
-						
-						$.each(data, function(i){
-						
-							itens.push("<tr> <td>"+ this.descricao +"</td><td>"+ this.data + "</td><td>"+ this.duracao + "</td><td>"+ this.modalidade.descricao + "</td></tr>");
-							
-						});
+	$( window ).on( "load", function(){
+		
+		
+		var user = sessionStorage.getItem("email");
+		
+		var ola = "Ola, "+user;
+		
+		var tipo = sessionStorage.getItem("tipo") + "(Aluno)";
+		
+		var date = new Date();
+		
+		var dma= date.getDate()+"/"+ (date.getMonth()+1)+"/"+date.getFullYear()+"Horas: "+date.getHours()+":"+date.getMinutes();
+		
+		var itens2 = [];
+		
+		itens2.push("<tr> <td>"+ ola +"</td><td>"+ tipo + "</td><td>"+ dma +"</td></tr>");
 									
-						$("#tabelaAulas").append(itens);
+		$("#tabelaStatus").append(itens2);
+		
+		
+		var url = "/aulas/"+user;
+		
+		
+		
+			$.getJSON(url, function(data) {
+				
+					var itens = [];
+					
+					$.each(data, function(i){
 						
-				});
+						itens.push("<tr> <td>"+ this.descricao +"</td><td>"+ this.data + "</td><td>"+ this.duracao + "</td><td>"+ this.modalidade.descricao + 
+						"</td><td> <button id=\""+itens.length+"\" class=\"desmat\" style='color:#FF0000' >X</button>" + "</td></tr>");
+					
+					});
+					
+					$("#tabelaAulas").append(itens);
+					
 			});
+			
+			
+			
+			
+			
+		});
+	
+	$(document).on('click','.desmat',function(e){
+		var user = sessionStorage.getItem("email");
+	    var urld = "/desmat/"+user+"/aula/"+this.id;
+		$.getJSON(urld, function(data){
+			alert("Aula: "+ data.descricao+ " desmatriculada!");
+		});
+		location.reload();
+	});
+		
 	</script>	
 		
 	</head>
@@ -53,13 +84,29 @@
 		</div>
 		
 		<table class="table table-bordered"> 
+			<caption>Status</caption>
+				<thead>
+					<tr> 
+						<th></th>
+						<th></th>
+						<th></th> 
+					</tr> 
+				</thead> 
+				
+				<tbody id="tabelaStatus"> 
+					
+				</tbody> 
+		</table>
+		
+		<table class="table table-bordered"> 
 			<caption>Aulas</caption>
 				<thead>
 					<tr> 
 						<th>Descricao</th>
 						<th>Data</th> 
 						<th>Duracao</th> 
-						<th>Modalidade</th> 
+						<th>Modalidade</th>
+						<th>Matricula</th>
 					</tr> 
 				</thead> 
 				
