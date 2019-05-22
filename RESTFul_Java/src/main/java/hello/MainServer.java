@@ -33,6 +33,7 @@ public class MainServer {
 	    	controller.cadastrar();
 	    	controller.mostAlunos();
 	    	controller.alterar();
+	    	controller.desmatAulaAluno();
 
 
 		
