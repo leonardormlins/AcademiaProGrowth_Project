@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Alterar
+		</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	<script src="js/jquery.js"></script>
+	
+	<script>
+	
+		//essa página é um teste utilizado com base na página de cadastro.
+		//ela funciona, porém, é necessário fazer alteração de guardar o cpf (id) no session
+		//para que não seja necessário inserir novamente, e que não seja alterado o cadastro
+		//de outro usuário por erro na inserção no campo n_n
+		
+		$(document).ready(function(){
+			
+			$("#alterar").click(function() {
+				
+				var nome = $("#nome").val();
+				var genero = $("input[name='sexo']:checked" ).val();
+				var senha = $("#senha").val();
+				var email = $("#email").val();
+				var ender = $("#rua").val()+", "+$("#bairro").val()+", "+$("#cidade").val()+", "+ $("#estado").val();
+				var tel = $("#telef").val();
+				var cpf = $("#cpf").val();
+				
+				
+										
+				var url = "/alterar/"+nome+"/"+senha+"/"+genero+"/"+email+"/"+ender+"/"+tel+"/"+cpf;
+				
+				alert(url);
+				alert("Alterado!");
+				$.getJSON(url, function(data) {
+					window.location.href = '/Aluno.html';
+						
+				});
+			});
+		});
+		
+	</script>
+		
+	</head>
+
+	<body>
+		<header>
+			<div class="Container">
+				<img id="logo" src="css/logo.png">
+			</div>
+
+		</header>
+		
+		<div id="fundo_principal">
+			<div id="fundoCadastro">
+				<div id="formRegister">
+					<form>
+						<h3>BASICO</h3> <br>
+						<div class="field">	
+							<label class="formulario">Nome Completo</label>
+							<input id="nome" type="text" name="nomeCompleto" size="60px"> 
+						</div>
+						<div class="field">	
+							<label class="formulario">Senha</label>
+							<input id="senha" type="password" name="senha" size="60px"> 
+						</div>
+						<div class="field">
+							<label class="formulario">GÃªnero</label>
+							<input type="radio" name="sexo" value="masculino"> <label id="sexoOp">Masculino</label>
+							<input type="radio" name="sexo" value="feminino"> <label id="sexoOp">Feminino </label>
+						</div>
+						<div class="field">
+							<label class="formulario">EndereÃ§o de email</label>
+							<input id="email" type="text" name="email" size="35px"> 
+						</div>
+						<div class="field">
+							<label class="formulario">Telefone</label>
+							<input id="telef" type="text" name="tel" size="35px"> 	
+						</div>
+
+
+						<h3>ENDEREÃ‡O</h3>
+						<div class="field">
+							<label class="formulario">Rua </label>
+							<input id="rua" type="text" name="rua" size="40px">
+						</div>
+						<div class="field">
+							<label class="formulario">Bairro</label>
+							<input id="bairro" type="text" name="bairro" size="40px">
+						</div>
+						<div class="field">
+							<label class="formulario">Cidade</label>
+							<input id="cidade" type="text" name="cidade" size="40px">
+						</div>
+						<div class="field">
+							<label class="formulario">Estado</label>
+							<input id="estado" type="text" name="estado" size="40px">
+						</div>
+
+						<br>
+						<div class="field">
+							<label class="formulario">CPF </label>
+							<input id="cpf" type="text" name="cpf" size="15px">
+						</div>
+						<div>
+							<button id="alterar" type="submit">Alterar</button>
+						</div>
+
+					</form>
+				</div>		
+			</div>
+
+		</div>
+
+		<footer>
+			<div class="container">
+				<p>Desenvolvido por DevGrowth.</p>
+			</div>
+		</footer>
+	</body>
+</html>

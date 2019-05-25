@@ -4,7 +4,8 @@
 		<title>
 			Bem vindo!
 		</title>
-		<link rel="stylesheet" type="text/css" href="static/css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href="css/bootstrap.min.css" rel=stylesheet>
 	<script src="js/jquery.js"></script>
 
 
@@ -15,13 +16,13 @@
 		
 		var user = sessionStorage.getItem("email");
 		
-		var ola = "Ola, "+user;
+		var ola = "Olá, <b>"+user+"</b>! ";
 		
-		var tipo = sessionStorage.getItem("tipo") + "(Aluno)";
+		var tipo = sessionStorage.getItem("tipo") + " (Aluno) ";
 		
 		var date = new Date();
 		
-		var dma= date.getDate()+"/"+ (date.getMonth()+1)+"/"+date.getFullYear()+"Horas: "+date.getHours()+":"+date.getMinutes();
+		var dma= date.getDate()+"/"+ (date.getMonth()+1)+"/"+date.getFullYear()+" Horas: "+date.getHours()+":"+date.getMinutes();
 		
 		var itens2 = [];
 		
@@ -72,19 +73,14 @@
 		<header>
 			<div class="Container">
 				<img id="logo" src="css\logo.png">
-			</div>
-
+			</div>	
 		</header>
 		
 		<div id="fundo_principal">
 			<div id="fundoCadastro">
-						
-			</div>
-
-		</div>
-		
-		<table class="table table-bordered"> 
-			<caption>Status</caption>
+				<div class="topnav-right">
+    			<table class="table table-borderless table-condensed table-hover"> 
+					<caption>Status</caption>
 				<thead>
 					<tr> 
 						<th></th>
@@ -92,28 +88,43 @@
 						<th></th> 
 					</tr> 
 				</thead> 
-				
 				<tbody id="tabelaStatus"> 
 					
-				</tbody> 
-		</table>
-		
-		<table class="table table-bordered"> 
-			<caption>Aulas</caption>
-				<thead>
-					<tr> 
-						<th>Descricao</th>
-						<th>Data</th> 
-						<th>Duracao</th> 
-						<th>Modalidade</th>
-						<th>Matricula</th>
-					</tr> 
-				</thead> 
+				</tbody>
 				
-				<tbody id="tabelaAulas"> 
+				</table>
+  				</div>
+  				<br>
+  				<br>
+  				<br>
+  				<br>
+  				<br>
+  				<br>
+  				<br>
+  				<br>
+  				<div class="margemshow">
+  				<h3>Aulas</h3>
+  				<table class="table table-sm">
+ 
+  				<thead>
+	    			<tr>
+	      				<th scope="col"><center>Descricao</center></th>
+	      				<th scope="col"><center>Data</center></th>
+	      				<th scope="col"><center>Duracao</center></th>
+	      				<th scope="col"><center>Modalidade</center></th>
+	      				<th scope="col"><center>Matricula</center></th>
+	    			</tr>
+  				</thead>
+  				
+  				<tbody id="tabelaAulas"> 
 					
-				</tbody> 
-		</table>
+				</tbody>
+				
+				</table>
+				</div>
+			</div>
+
+		</div>
 
 		<footer>
 			<div class="container">
