@@ -177,12 +177,18 @@ public class Model {
 	}
 	
 	//Cria um codigo valido para cadastro e insere no banco
+	public void novoCodigo(){
+		int valorParaInserir = gerarValorCode();
+		codigosAcesso.store(valorParaInserir);
+		codigosAcesso.commit();
+	}
 	
 	//Gera um codigo
-	public int geraCodigo(){
+	public int gerarValorCode(){
 		Random gerador = new Random();
 		int aux = gerador.nextInt(10000);
 		return aux;	
 	}
-
+	
+	//Remove codigo
 }
