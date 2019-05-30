@@ -1,6 +1,6 @@
 package hello;
 
-
+import java.util.Random
 import java.util.List;
 import java.util.LinkedList;
 
@@ -176,5 +176,13 @@ public class Model {
 		return null;
 	}
 	
+	//Cria um codigo valido para cadastro e insere no banco
+	
+	//Gera um codigo
+	public int geraCodigo(){
+		Random gerador = new Random();
+		int aux = gerador.nextInt(10000);
+		return aux;	
+	}
 
 }
