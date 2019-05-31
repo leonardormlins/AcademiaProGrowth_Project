@@ -1,6 +1,6 @@
 package hello;
 
-import java.util.Random
+import java.util.Random;
 import java.util.List;
 import java.util.LinkedList;
 
