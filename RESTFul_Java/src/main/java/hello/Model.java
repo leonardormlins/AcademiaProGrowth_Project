@@ -68,7 +68,20 @@ public class Model {
 	    
 	    return true;
 	}
-
+	
+	//Verifica se e-mail de Admin está disponível
+	public boolean isAdminDisponivel(String email){
+		Query query = adms.query();
+		query.constrain(Admin.class);
+	    List<Admin> todosAdms = query.execute();
+	    
+	    for(Admin admin: todosAdms){
+	    	if(admin.getEmail().equals(email)) return false;
+	    }
+	    
+	    return true;
+	}
+	
 
 	//cadastra aluno
 	public boolean addAluno (Aluno aluno) {
@@ -100,14 +113,28 @@ public class Model {
 	
 	
 	//login
-	public Aluno loginUser(String email, String senha)
+	public Pessoa loginUser(String email, String senha)
 	{
 		Query query1 = alunos.query();
 		query1.constrain(Aluno.class);
-		
 		List<Aluno> todosAlunos = query1.execute();
-		for(Aluno pessoa:todosAlunos) {
-			if (pessoa.getEmail().equals(email)&&pessoa.getSenha().equals(senha))return pessoa;
+		
+		Query query2 = professores.query();
+		query2.constrain(Professor.class);
+		List<Professor> todosProf = query2.execute();
+		
+		Query query3 = adms.query();
+		query3.constrain(Admin.class);
+		List<Admin> todosAdmins = query3.execute();
+		
+		for(Aluno aluno:todosAlunos) {
+			if (aluno.getEmail().equals(email)&&aluno.getSenha().equals(senha))return aluno;
+		}
+		for(Professor prof:todosProf) {
+			if (prof.getEmail().equals(email)&&prof.getSenha().equals(senha))return prof;
+		}
+		for(Admin admin:todosAdmins) {
+			if (admin.getEmail().equals(email)&&admin.getSenha().equals(senha))return admin;
 		}
 		return null;
 	}
@@ -118,6 +145,21 @@ public class Model {
 		addAluno(new Aluno (Integer.valueOf(cpf),nome,ender,email,tel, senha, genero.charAt(0),1, null, null, 
     			new LinkedList<Aula>()));
 	}
+	
+	
+	//cadastro de professor
+	public Professor cadastrarProf(String nome, String senha, String genero, String email, String ender, String tel,   String cpf, String expediente, String descricaoCargo  ) {
+		Professor pf= new Professor (Integer.valueOf(cpf),nome,ender,email,tel, expediente, descricaoCargo, new LinkedList<Modalidade>(), new LinkedList<Aula>(), senha, genero.charAt(0),2); 
+		addProf(new Professor (Integer.valueOf(cpf),nome,ender,email,tel, expediente, descricaoCargo, new LinkedList<Modalidade>(), new LinkedList<Aula>(), senha, genero.charAt(0),2));
+		return pf;
+	}
+	
+	//cadastro de admin
+		public void cadastrarAdmin(String nome, String senha, String genero, String email, String ender, String tel,   String cpf) {
+			addAdm(new Admin (Integer.valueOf(cpf),nome,ender,email,tel, senha, genero.charAt(0),0)); 
+
+		}
+	
 
 	
 	//retorna todos os alunos cadastrados
@@ -191,4 +233,137 @@ public class Model {
 	}
 	
 	//Remove codigo
+	
+	
+	
+	
+	//Matricula aulas para aluno
+	public Aula matAulaAluno(String email, String nAula){
+		Query query = alunos.query();
+		query.constrain(Aluno.class);
+		
+		List<Aluno> todosAlunos = query.execute();
+		
+		Query query2 = aulas.query();
+		query.constrain(Aula.class);
+		
+		List<Aula> todasAulas = query2.execute();
+		
+		
+		for (Aluno aluno:todosAlunos) {
+			if (aluno.getEmail().equals(email)) {
+				for (Aula aula: todasAulas) {
+					if (todasAulas.indexOf(aula)==Integer.valueOf(nAula)){
+						Aula aulaMat=aula;
+						aluno.getAula().add(aula);
+						alunos.store(aluno);
+						alunos.commit();
+						return aulaMat;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	//Adiciona shape a aluno
+	public void adcShapeAluno (String email, String altura ,String peso ,String circAbdomen ,String igc ,String data) {
+	Query query = alunos.query();
+	query.constrain(Aluno.class);
+
+	List<Aluno> todosAlunos = query.execute();
+		for (Aluno aluno:todosAlunos) {
+			if (aluno.getEmail().equals(email)) {
+				aluno.getHistoricoShape().add(new Shape(Float.valueOf(altura), Float.valueOf(peso), Float.valueOf(circAbdomen), Float.valueOf(igc),data));
+				alunos.store(aluno);
+				alunos.commit();
+			}
+		}
+	}
+	
+	
+	//Adiciona Acesso a Aluno
+	public void adcAcessoAluno (String email, String data, String durac){
+	Query query = alunos.query();
+	query.constrain(Aluno.class);
+
+	List<Aluno> todosAlunos = query.execute();
+	
+		for (Aluno aluno:todosAlunos) {
+			
+				aluno.getAcessos().add(new Acesso(Integer.valueOf(data), aluno.getId() ,Integer.valueOf(durac)));
+				alunos.store(aluno);
+				alunos.commit();
+				acessos.store(new Acesso(Integer.valueOf(data), aluno.getId() ,Integer.valueOf(durac)));
+				acessos.commit();
+			}
+		}
+	
+	
+	//retorna acessos por aluno
+		public List<Acesso> buscarAcessos(String email){
+			Query query = alunos.query();
+			query.constrain(Aluno.class);
+			
+			List<Aluno> todosAlunos = query.execute();
+			
+			for (Aluno aluno:todosAlunos) {
+				if (aluno.getEmail().equals(email))
+					return aluno.getAcessos();
+			}
+			return null;
+		}
+	
+	//retorna shapes por aluno
+		public List<Shape> buscarShapes(String email){
+			Query query = alunos.query();
+			query.constrain(Aluno.class);
+			
+			List<Aluno> todosAlunos = query.execute();
+			
+			for (Aluno aluno:todosAlunos) {
+				if (aluno.getEmail().equals(email))
+					return aluno.getHistoricoShape();
+			}
+			return null;
+		}
+	
+	
+	//Retorna serie atual de aluno
+	public Musculacao getMuscAtual (String email){
+	Query query = alunos.query();
+	query.constrain(Aluno.class);
+
+	List<Aluno> todosAlunos = query.execute();
+	
+		for (Aluno aluno:todosAlunos) {
+			if (aluno.getEmail().equals(email)) {
+				return aluno.getMusculacaoAtual();
+			}
+		}
+		return null;
+	}
+	//Retorna Historico de Series de Aluno
+	public List<Musculacao> getHistSeries (String email){
+	Query query = alunos.query();
+	query.constrain(Aluno.class);
+
+	List<Aluno> todosAlunos = query.execute();
+	
+		for (Aluno aluno:todosAlunos) {
+			if (aluno.getEmail().equals(email)) {
+				return aluno.getMusculacoes();
+			}
+		}
+		return null;
+	}
+	
+	//Retorna todas as aulas salvas no banco
+	public List<Aula> mostAulas(){
+		Query query = aulas.query();
+		query.constrain(Aula.class);
+		return query.execute();
+	}
+	
+	
 }
