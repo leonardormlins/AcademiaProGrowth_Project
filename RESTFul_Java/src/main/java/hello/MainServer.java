@@ -34,6 +34,16 @@ public class MainServer {
 	    	controller.mostAlunos();
 	    	controller.alterar();
 	    	controller.desmatAulaAluno();
+	    	controller.adcAcessoAluno();
+	    	controller.adcShapeAluno();
+	    	controller.buscarAcessosAluno();
+	    	controller.buscarShapesAluno();
+	    	controller.cadastrarProf();
+	    	controller.mostAulas();
+	    	controller.matAulaAluno();
+	    	controller.cadastrarAdmin();
+	    	controller.getMuscAtual();
+	    	controller.getHistSeries();
 
 
 		
