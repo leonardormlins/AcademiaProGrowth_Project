@@ -1,4 +1,4 @@
-package edu.fatec.lab3;
+package hello;
 
 public class Admin extends Pessoa {
 
