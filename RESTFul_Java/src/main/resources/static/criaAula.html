@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Inserir Aula
+		</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href="css/bootstrap.min.css" rel=stylesheet>
+	
+	<script src="js/jquery.js"></script>
+	
+	<script>
+	$( window ).on( "load", function(){
+			
+			$("#enviaserie").click(function() {
+				
+				var desc = $("#desc").val();
+				var data = $("#data").val();
+				var dura = $("#dura").val();
+				var modal = $("#modal").val();
+				var user = sessionStorage.getItem("email");
+				
+												
+				var url = "/prof/incluir/aula/"+desc+"/"+data+"/"+dura+"/"+modal+"/"+user;
+			
+				
+				$.getJSON(url, function(data) {
+					alert("Aula adicionada! :D");
+					window.location.href = '/Professor.html';
+											
+				});
+			});
+			
+			
+					
+								
+				});	
+			
+		
+	</script>
+		
+	</head>
+
+	<body>
+		<header>
+			<div class="Container">
+				<img id="logo" src="css/logo.png">
+			</div>
+
+		</header>
+		
+				
+		<div id="fundo_principal">
+			<div id="fundoCadastro">
+				<br>
+				<br>
+				<br>
+
+				<div class="margemshow">
+  				<div id="formRegister">
+				<div class="container">
+				  	<h3>Dados da Aula</h3>
+				  	<br>
+				  <form class="form-inline">
+				    <div class="form-group">
+				      <label for="text">Descricao: </label>
+				      <input type="text" class="form-control" id="desc" placeholder="Insira a descricao">
+				    </div>
+				    <br>
+				    <div class="form-group">
+				      <label for="text">Data:</label>
+				      <input type="text" class="form-control" id="data" placeholder="Insira o dia da semana">
+				    </div>
+				    <br>
+					<div class="form-group">
+				      <label for="text">Duracao:</label>
+				      <input type="text" class="form-control" id="dura" placeholder="Insira a duracao">
+				    </div>
+				    <br>
+				    <div class="form-group">
+				      <label for="text">Modalidade:</label>
+				      <input type="text" class="form-control" id="modal" placeholder="Insira a Modalidade">
+				    </div>
+				    <br>
+				    <button type="button" id="enviaserie" class="btn btn-default">Inserir</button>
+				  </form>
+
+				</div>
+				</div>
+			
+		</div>
+		</div>
+		</div>
+		
+		<footer>
+			<div class="container">
+				<p>Desenvolvido por DevGrowth.</p>
+			</div>
+		</footer>
+	</body>
+</html>

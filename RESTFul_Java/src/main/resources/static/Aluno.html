@@ -13,44 +13,66 @@
 	
 	$( window ).on( "load", function(){
 		
-		
-		var user = sessionStorage.getItem("email");
-		
+
+		var user = sessionStorage.getItem("email");		
 		var ola = "Olá, <b>"+user+"</b>! ";
-		
-		var tipo = sessionStorage.getItem("tipo") + " (Aluno) ";
-		
+		var tipo = "";
+		if(sessionStorage.getItem("tipo")==0) tipo="(Admin) ";
+		if(sessionStorage.getItem("tipo")==1) tipo="(Aluno) ";
+		if(sessionStorage.getItem("tipo")==2) tipo="(Prof) ";
 		var date = new Date();
-		
-		var dma= date.getDate()+"/"+ (date.getMonth()+1)+"/"+date.getFullYear()+" Horas: "+date.getHours()+":"+date.getMinutes();
-		
+		var dma= ('0'+date.getDate()).slice(-2)+"/"+ ('0'+(date.getMonth()+1)).slice(-2)+"/"+date.getFullYear()+" Horas: "+('0'+date.getHours()).slice(-2)+":"+('0'+date.getMinutes()).slice(-2);
 		var itens2 = [];
-		
-		itens2.push("<tr> <td>"+ ola +"</td><td>"+ tipo + "</td><td>"+ dma +"</td></tr>");
-									
+		itens2.push("<tr> <td>"+ ola +"</td><td>"+ tipo + "</td><td>"+ dma +"<button id=\"logout\" class=\"logoutClass\" style=\"color:#FF0000\">Logout</button></td></tr>");						
 		$("#tabelaStatus").append(itens2);
 		
 		
 		var url = "/aulas/"+user;
-		
-		
-		
 			$.getJSON(url, function(data) {
-				
 					var itens = [];
-					
 					$.each(data, function(i){
 						
-						itens.push("<tr> <td>"+ this.descricao +"</td><td>"+ this.data + "</td><td>"+ this.duracao + "</td><td>"+ this.modalidade.descricao + 
+						itens.push("<tr> <td>"+ this.descricao +"</td><td>"+ this.data + "</td><td>"+ this.duracao + "</td><td>"+ this.modalidade + 
 						"</td><td> <button id=\""+itens.length+"\" class=\"desmat\" style='color:#FF0000' >X</button>" + "</td></tr>");
 					
-					});
-					
-					$("#tabelaAulas").append(itens);
-					
+					});		
+					$("#tabelaAulas").append(itens);	
 			});
-			
-			
+			var url2 = "/acessos/"+user;
+			$.getJSON(url2, function(data) {
+					var itens3 = [];
+					$.each(data, function(i){	
+						itens3.push("<tr> <td>"+ this.data + "</td><td>"+ this.duracao + " min</td></tr>");				
+					});		
+					$("#tabelaAcessos").append(itens3);	
+			});	
+			var url3 = "/shapes/"+user;
+			$.getJSON(url3, function(data) {
+					var itens4 = [];
+					$.each(data, function(i){
+						itens4.push("<tr> <td>"+ this.altura + "</td><td>"+ this.peso + "</td><td>"+ this.circAbdomen+ "</td><td>"+ this.igc +"</td><td>" + this.data + "</td></tr>");
+					});
+					$("#tabelaShapes").append(itens4);		
+			});	
+			var url4 = "/getmuscatual/"+user;
+			$.getJSON(url4, function(data) {
+					document.getElementById('objSerie').innerHTML = "Objetivo: " + data.objetivo;
+					var itens5 = [];
+					$.each(data.exercicios, function(i){
+						itens5.push("<tr> <td>"+ this.equipamento + "</td><td>"+ this.musculo + "</td><td>"+ this.repeticao+  "</td></tr>");
+					});
+					$("#tabelaSerie").append(itens5);	
+			});	
+			$("#adcAcesso").click(function() {
+				var user = sessionStorage.getItem("email");
+				var dia = ('0'+date.getDate()).slice(-2)+"-"+ ('0'+(date.getMonth()+1)).slice(-2)+"-"+date.getFullYear();
+				var durac = $("#dAc").val();
+			    var urlAA = "/adcAcesso/"+user+"/"+dia+"/"+durac;
+				$.getJSON(urlAA, function(data){
+				});
+				alert("Acesso adicionado!");
+				location.reload();
+			});
 			
 			
 			
@@ -59,10 +81,21 @@
 	$(document).on('click','.desmat',function(e){
 		var user = sessionStorage.getItem("email");
 	    var urld = "/desmat/"+user+"/aula/"+this.id;
+	    var desmat = "";
 		$.getJSON(urld, function(data){
-			alert("Aula: "+ data.descricao+ " desmatriculada!");
+			desmat = data.descricao;
 		});
+		alert("Aula: "+ desmat + " desmatriculada!");
 		location.reload();
+	});
+	
+
+	
+	$(document).on('click','.logoutClass',function(e){
+		sessionStorage.removeItem("email");
+		sessionStorage.removeItem("tipo");
+		alert("Sessão Encerrada!");
+		window.location.href = '/index.html';
 	});
 		
 	</script>	
@@ -78,7 +111,7 @@
 		
 		<div id="fundo_principal">
 			<div id="fundoCadastro">
-				<div class="topnav-right">
+				<div class="topnav-right">				
     			<table class="table table-borderless table-condensed table-hover"> 
 					<caption>Status</caption>
 				<thead>
@@ -86,33 +119,54 @@
 						<th></th>
 						<th></th>
 						<th></th> 
+						<th></th> 
 					</tr> 
 				</thead> 
 				<tbody id="tabelaStatus"> 
-					
 				</tbody>
-				
 				</table>
   				</div>
-  				<br>
-  				<br>
-  				<br>
-  				<br>
-  				<br>
+
   				<br>
   				<br>
   				<br>
   				<div class="margemshow">
+  				<br>
+  				
+  				<br>
+  				
+  				<br>
+  				<a href="alterar.html" class="badge badge-secondary">Alterar dados de cadastro</a>
+  				<table class="table table-sm"> 
+				<h3>Serie Atual</h3>
+				<div id="objSerie"></div>
+				<thead>
+					<tr> 
+						<th>Equipamento</th>
+						<th>Musculo</th> 
+						<th>Repeticao</th> 
+					</tr> 
+				</thead> 
+				
+				<tbody id="tabelaSerie"> 
+					
+				</tbody> 
+				</table>
+				<br>
+  				<br>
+  				<a href="HistSeries.html" class="badge badge-secondary">Historico de Series</a>
+  				<br>
+  				<br>
   				<h3>Aulas</h3>
   				<table class="table table-sm">
  
   				<thead>
 	    			<tr>
-	      				<th scope="col"><center>Descricao</center></th>
-	      				<th scope="col"><center>Data</center></th>
-	      				<th scope="col"><center>Duracao</center></th>
-	      				<th scope="col"><center>Modalidade</center></th>
-	      				<th scope="col"><center>Matricula</center></th>
+	      				<th scope="col">Descricao</th>
+	      				<th scope="col">Data</th>
+	      				<th scope="col">Duracao</th>
+	      				<th scope="col">Modalidade</th>
+	      				<th scope="col">Matricula</th>
 	    			</tr>
   				</thead>
   				
@@ -121,6 +175,58 @@
 				</tbody>
 				
 				</table>
+				<br>
+  				<br>
+  				<a href="MatAula.html" class="badge badge-secondary">Matricular Aulas</a>
+  				<br>
+  				<br>
+				<table class="table table-sm"> 
+				<h3>Shapes</h3>
+				<thead>
+					<tr> 
+						<th>Altura</th>
+						<th>Peso</th> 
+						<th>Circ. Abdomen</th> 
+						<th>IGC</th>
+						<th>Data</th>
+					</tr> 
+				</thead> 
+				
+				<tbody id="tabelaShapes"> 
+					
+				</tbody> 
+				
+				</table>
+				<br>
+				<br>
+				<a href="cadShape.html" class="badge badge-secondary">Adicionar Shape Atual</a>
+				<br>
+				<br>
+					<table class="table table-sm"> 
+					<h3>Acessos</h3>
+					<thead>
+						<tr> 
+							<th>Data</th>
+							<th>Duracao</th> 
+						</tr> 
+					</thead> 
+					
+					<tbody id="tabelaAcessos"> 
+						
+					</tbody> 
+					</table>
+					<br>
+				<br>
+					<h5>Adicionar o acesso atual</h5>
+					<form class="form-inline">
+				    <div class="form-group">
+				      <label for="text">Minutos: </label>
+				      <input type="text" class="form-control" id="dAc" placeholder="Insira os minutos">
+				    </div>
+					<div>
+					<button id="adcAcesso" type="button" class="btn btn-default">Adicionar</button>
+					</div>
+				
 				</div>
 			</div>
 

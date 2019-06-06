@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Cadastrar Shape
+		</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	<script src="js/jquery.js"></script>
+	
+	<script>
+		$(document).ready(function(){
+			
+			var user = sessionStorage.getItem("email");
+			
+			$("#cadastroShape").click(function() {
+				
+				var altura = $("#altura").val();
+				var peso = $("#peso").val();
+				var circAbd = $("#cabd").val();
+				var igc = $("#igc").val();
+				var date = new Date();
+				var dia =('0'+date.getDate()).slice(-2)+"-"+ ('0'+(date.getMonth()+1)).slice(-2)+"-"+date.getFullYear();						
+				var url = "/adcShape/"+user+"/"+altura+"/"+peso+"/"+circAbd+"/"+igc+"/"+dia;
+
+				$.getJSON(url, function(data) {
+					
+				});
+				alert("Shape Cadastrado!");
+				window.location.href = '/Aluno.html';
+			});
+		});
+		
+	</script>
+		
+	</head>
+
+	<body>
+		<header>
+			<div class="Container">
+				<img id="logo" src="css/logo.png">
+			</div>
+
+		</header>
+		
+		<div id="fundo_principal">
+			<div id="fundoCadastro">
+				<div id="formRegister">
+					<form>
+						<h3>BASICO</h3> <br>
+						<div class="field">	
+							<label class="formulario">Altura</label>
+							<input id="altura" type="text" name="altura" size="60px"> 
+						</div>
+						<div class="field">	
+							<label class="formulario">Peso</label>
+							<input id="peso" type="text" name="peso" size="60px"> 
+						</div>
+						<div class="field">
+							<label class="formulario">Circ Abdomen</label>
+							<input id="cabd" type="text" name="circAbd" size="35px"> 
+						</div>
+						<div class="field">
+							<label class="formulario">IGC</label>
+							<input id="igc" type="text" name="IGC" size="35px"> 	
+						</div>
+
+
+						<div>
+							<button id="cadastroShape" type="button">Cadastrar Shape</button>
+						</div>
+
+					</form>
+				</div>		
+			</div>
+
+		</div>
+
+		<footer>
+			<div class="container">
+				<p>Desenvolvido por DevGrowth.</p>
+			</div>
+		</footer>
+	</body>
+</html>

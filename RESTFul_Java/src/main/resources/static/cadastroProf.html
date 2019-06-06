@@ -20,12 +20,13 @@
 				var ender = $("#rua").val()+", "+$("#bairro").val()+", "+$("#cidade").val()+", "+ $("#estado").val();
 				var tel = $("#telef").val();
 				var cpf = $("#cpf").val();
-				var cod = sessionStorage.getItem("codigo");			
-				var url = "/cadpessoa/"+nome+"/"+senha+"/"+genero+"/"+email+"/"+ender+"/"+tel+"/"+cpf+"/"+cod;
+				var desc = $("#descCargo").val();
+				var exp = $("#expediente").val();
+				var url = "/cadprof/"+nome+"/"+senha+"/"+genero+"/"+email+"/"+ender+"/"+tel+"/"+cpf+"/"+exp+"/"+desc;
 				$.getJSON(url, function(data) {
 					alert("Cadastrado!");
-					sessionStorage.removeItem("codigo");
-					window.location.href = '/index.html';
+					window.location.href = '/Admin.html';
+			
 				});
 			});
 		});
@@ -92,6 +93,15 @@
 						<div class="field">
 							<label class="formulario">CPF </label>
 							<input id="cpf" type="text" name="cpf" size="15px">
+						</div>
+						<h3>FUNCAO</h3>
+						<div class="field">
+							<label class="formulario">Descricao do Cargo </label>
+							<input id="descCargo" type="text" name="cpf" size="15px">
+						</div>
+						<div class="field">
+							<label class="formulario">Expediente </label>
+							<input id="expediente" type="text" name="cpf" size="15px">
 						</div>
 						<div>
 							<button id="cadastroButton" type="button">Cadastrar</button>

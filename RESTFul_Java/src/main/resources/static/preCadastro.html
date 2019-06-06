@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<title>
 			Cadastrar
 		</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		
+		<script src="js/jquery.js"></script>
+		<script>
+			alert("Peca o codigo para um atendente da academia");
+			$(document).ready( function(){
+				$("#preCadastroButton").click( function(){
+					var code = $("#inputCodigo").val().trim();
+					var urlR = "/valida/"+code;
+					$.getJSON(urlR, function(data){
+					if(data==1){
+						parseInt(sessionStorage.setItem("codigo", code));
+						alert("Codigo Valido!");
+						window.location.href="/cadastro.html";
+					}
+					else{
+						alert("Codigo invalido!");
+					}
+				});
+			}
+
+			);
+			});
+
+
+
+		</script>
+		
 	</head>
 
 	<body>
@@ -24,10 +52,13 @@
 
 		</header>
 		
+		
+	
+		
 		<div id="fundo_principal">
 			<div id="fundoCadastro">
 				<div id="preCadastro">
-					<div id="enumCodigo">INSIRA O CÓDIGO PARA CADASTRO!</div>
+					<div id="enumCodigo">INSIRA O CODIGO PARA CADASTRO!</div>
 						<input id="inputCodigo" type="text" name="codigoAcesso" size="20px">	
 					<div>
 						<button id="preCadastroButton" type="submit">Validar</button>

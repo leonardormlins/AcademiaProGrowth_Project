@@ -1,0 +1,324 @@
+/*							*
+*	Arquivo de estilo CSS	*
+*							*
+*/
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, Arial;
+}
+
+/* TAGS */
+
+h3{
+	margin-top: 15px;
+}
+h3:first-child{
+	margin-top: 0;
+}
+
+input{
+	margin: 2px;
+	line-height: 20px;
+}
+
+label{
+	width: 153px;
+	display: block;
+}
+
+header{
+	background-color: gray;
+	height: 116px;
+	color: white;
+	font-weight: bold;
+	box-shadow: 0px 1px 3px #001; 
+}
+
+footer{
+	background-color: #D3D3D3;
+	height: 50px;
+	text-align: center;
+	font-size: 14px;
+	padding-top:10px;
+	box-shadow: 0px 1px 3px #001; 
+}
+
+h1{ 
+	text-align:center;
+}
+
+/* IDS */
+
+#fundo_principal{
+	background-image: url('workgym.png');
+	background-size: 100%;
+	min-height: 650px;
+}
+
+#fundo_principalMember{
+	background-color: rgb(240, 232, 232);
+	min-height: 830px;
+}
+
+#headerMember{
+	background-color: gray;
+	height: 60px;
+	color: white;
+	font-weight: bold;
+	box-shadow: 0px 1px 3px #001; 
+}
+
+#nomePag{
+	font-family: Stencil Std;
+	text-shadow: 1.1px 1.1px 1px #111111;
+	padding-top: 30px;
+	float: left;
+}
+
+#login{
+	width: 250px;
+	height: 230px;
+	background-color: white;
+	float: right;
+	box-shadow: 0px 1px 3px #001;
+}
+
+#emailBox{
+	width: 180px;
+}
+
+#passwordBox{
+	width: 180px;
+}
+
+#emailBox2{
+	width: 220px;
+}
+
+#passwordBox2{
+	width: 220px;
+}
+
+#formLogin{
+	padding-top: 60px;
+	padding-left: 50px;
+}
+
+#enunLogin{
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+#tituloLogon{
+	margin-left: 98px;
+	margin-top: 20px;
+}
+
+#tituloLogon2{
+	margin-left: 180px;
+	margin-top: 20px;
+}
+
+#formBlock{
+	margin-top: 20px;
+	margin-left: 35px;
+	display: block;
+}
+
+#formBlock2{
+	margin-top: 20px;
+	margin-left: 90px;
+	display: block;
+}
+
+#sexoOp{
+	display: block;
+	width: 90px;
+}
+
+#loginButton{
+	width: 60px;
+	height: 30px;
+	margin-top: 8px;
+	margin-left: 97px;
+}
+
+#bCode{
+	align-items:center;
+}
+
+#loginButton2{
+	width: 80px;
+	height: 30px;
+	margin-top: 8px;
+	margin-left: 165px;
+}
+
+#cadastroButton{
+	width: 90px;
+	height: 45px;
+	margin-top: 20px;
+	margin-left: 300px;
+}
+
+#preCadastroButton{
+	width: 100px;
+	height: 30px;
+	margin-left: 100px;
+	margin-top: 15px;
+}
+
+#linkCadastrar{
+	margin-top: 40px;
+	margin-left: 50px;
+	display: block;
+	font-size: 14px;
+}
+
+#manterMe{
+	font-size: 12px;
+}
+
+#formRegister{
+	padding-top: 70px;
+	padding-left: 100px;
+	padding-right: 40px;
+	padding-bottom: 40px;
+	text-align: left;
+}
+
+#preCadastro{
+	margin-left: 265px;
+	padding-top: 220px;
+}
+
+#inputCodigo{
+	margin-left: 71px;
+}
+
+#enumCodigo{
+	margin-left: -30px;
+	margin-bottom: 30px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#fundoCadastro{
+	background-color: white;
+	margin-left: 300px;
+	margin-right: 300px;
+	min-height: 600px;
+	box-shadow: 0px 3px 5px #001;
+}
+
+#fundoMember{
+	background-color: white;
+	margin-left: 200px;
+	margin-right: 200px;
+	min-height: 800px;
+	box-shadow: 0px 3px 5px #001;
+}
+
+#fundoLogar{
+	background-color: white;
+	margin-top: 80px;
+	margin-left: 400px;
+	margin-right: 400px;
+	min-height: 500px;
+	box-shadow: 0px 3px 5px #001;
+}
+
+#fundoSobre{
+	background-color: white;
+	opacity: 0.65;
+	margin-left: 180px;
+	margin-right: 180px;
+	min-height: 800px;
+	box-shadow: 0px 3px 5px #001;
+}
+
+#logo{
+	box-shadow: 0px 1px 3px #001;
+	height: 116px;
+	width: 400px;
+}
+
+#logoLogin{
+	box-shadow: 0px 1px 3px #001;
+	height: 116px;
+	width: 400px;
+	margin-right: 600px;
+}
+
+#logoLogon{
+	box-shadow: 0px 1px 3px #001;
+	height: 116px;
+	width: 400px;
+	margin-left: 130px;
+	padding-top: 30px;
+}
+
+#menuIndex{
+	float: right;
+	margin-top: px;
+	margin-right: 120px;
+}
+
+#statusMember{
+	display: inline;
+	float: right;
+	font-style: italic;
+}
+
+#menu ul {
+    padding:0px;
+    margin:0px;
+    background-color:#EDEDED;
+    list-style:none;
+    box-shadow: 0px 3px 5px #001;
+}
+
+#menu ul li { display: inline; }
+
+#menu ul li a {
+    padding: 2px 10px;
+    display: inline-block;
+
+    /* visual do link */
+    background-color:#EDEDED;
+    color: #333;
+    text-decoration: none;
+    border-bottom:3px solid #EDEDED;
+}
+
+#menu ul li a:hover {
+    background-color:#D6D6D6;
+    color: black;
+    border-bottom:3px solid black;
+}
+
+/* CLASS */
+
+.Container{
+	width: 1200px;
+	margin: auto;
+}
+
+.field{
+	margin-top: 8px;
+	display: flex;
+	align-items: center;
+}
+
+.topnav-right{
+	float: right;
+  	margin-right: 25px;
+}
+
+.margemshow {
+  	margin-left: 50px;
+	margin-right: 50px;
+  
+}

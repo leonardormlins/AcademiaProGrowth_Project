@@ -10,30 +10,25 @@
 	
 	<script>
 	
-		//essa página é um teste utilizado com base na página de cadastro.
-		//ela funciona, porém, é necessário fazer alteração de guardar o cpf (id) no session
-		//para que não seja necessário inserir novamente, e que não seja alterado o cadastro
-		//de outro usuário por erro na inserção no campo n_n
 		
 		$(document).ready(function(){
 			
 			$("#alterar").click(function() {
 				
+				var oldEm = sessionStorage.getItem("email");
 				var nome = $("#nome").val();
 				var genero = $("input[name='sexo']:checked" ).val();
 				var senha = $("#senha").val();
 				var email = $("#email").val();
 				var ender = $("#rua").val()+", "+$("#bairro").val()+", "+$("#cidade").val()+", "+ $("#estado").val();
 				var tel = $("#telef").val();
-				var cpf = $("#cpf").val();
-				
-				
-										
-				var url = "/alterar/"+nome+"/"+senha+"/"+genero+"/"+email+"/"+ender+"/"+tel+"/"+cpf;
+				var cpf = $("#cpf").val();					
+				var url = "/alterar/"+oldEm+"/"+nome+"/"+senha+"/"+genero+"/"+email+"/"+ender+"/"+tel+"/"+cpf;
 				
 				alert(url);
 				alert("Alterado!");
 				$.getJSON(url, function(data) {
+					parseInt(sessionStorage.setItem("email", email));
 					window.location.href = '/Aluno.html';
 						
 				});
@@ -66,12 +61,12 @@
 							<input id="senha" type="password" name="senha" size="60px"> 
 						</div>
 						<div class="field">
-							<label class="formulario">GÃªnero</label>
+							<label class="formulario">Genero</label>
 							<input type="radio" name="sexo" value="masculino"> <label id="sexoOp">Masculino</label>
 							<input type="radio" name="sexo" value="feminino"> <label id="sexoOp">Feminino </label>
 						</div>
 						<div class="field">
-							<label class="formulario">EndereÃ§o de email</label>
+							<label class="formulario">Endereco de email</label>
 							<input id="email" type="text" name="email" size="35px"> 
 						</div>
 						<div class="field">
@@ -80,7 +75,7 @@
 						</div>
 
 
-						<h3>ENDEREÃ‡O</h3>
+						<h3>ENDERECO</h3>
 						<div class="field">
 							<label class="formulario">Rua </label>
 							<input id="rua" type="text" name="rua" size="40px">
@@ -104,7 +99,7 @@
 							<input id="cpf" type="text" name="cpf" size="15px">
 						</div>
 						<div>
-							<button id="alterar" type="submit">Alterar</button>
+							<button id="alterar" type="button">Alterar</button>
 						</div>
 
 					</form>

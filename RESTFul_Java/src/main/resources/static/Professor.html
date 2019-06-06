@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Bem vindo!
+		</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href="css/bootstrap.min.css" rel=stylesheet>
+	<script src="js/jquery.js"></script>
+
+
+	<script>
+	
+	$( window ).on( "load", function(){
+		
+		
+		var user = sessionStorage.getItem("email");		
+		var ola = "Olá, <b>"+user+"</b>! ";
+		var tipo = "";
+		if(sessionStorage.getItem("tipo")==0) tipo="(Admin) ";
+		if(sessionStorage.getItem("tipo")==1) tipo="(Aluno) ";
+		if(sessionStorage.getItem("tipo")==2) tipo="(Prof) ";
+		var date = new Date();
+		var dma= ('0'+date.getDate()).slice(-2)+"/"+ ('0'+(date.getMonth()+1)).slice(-2)+"/"+date.getFullYear()+" Horas: "+('0'+date.getHours()).slice(-2)+":"+('0'+date.getMinutes()).slice(-2);
+		var itens2 = [];
+		itens2.push("<tr> <td>"+ ola +"</td><td>"+ tipo + "</td><td>"+ dma +"<button id=\"logout\" class=\"logoutClass\" style=\"color:#FF0000\">Logout</button></td></tr>");						
+		$("#tabelaStatus").append(itens2);
+		
+		
+		var url = "/aulas/"+user;
+		
+		$("#seriebutton").click(function() {
+			
+			window.location.href = '/criaSerie.html';
+			
+			
+		});
+		
+		$("#aulabutton").click(function() {
+			
+			window.location.href = '/criaAula.html';
+		});
+		
+		var user = sessionStorage.getItem("email");
+		var urle = "/most/aulasProf/"+user;
+		
+		
+		
+		$.getJSON(urle, function(data) {
+			
+				var itens = [];
+				
+				$.each(data, function(i){
+					
+					itens.push("<tr> <td>"+ this.descricao +"</td><td>"+ this.data + "</td><td>"+ this.duracao + "</td><td>"+ this.modalidade + "</td></tr>");
+				
+				});
+				
+				$("#tabelaAulas").append(itens);
+				
+		});
+		});
+	
+	$(document).on('click','.logoutClass',function(e){
+		sessionStorage.removeItem("email");
+		sessionStorage.removeItem("tipo");
+		alert("Sessão Encerrada!");
+		window.location.href = '/index.html';
+	});
+		
+	</script>	
+		
+	</head>
+
+	<body>
+		<header>
+			<div class="Container">
+				<img id="logo" src="css\logo.png">
+			</div>	
+		</header>
+		
+		<div id="fundo_principal">
+			<div id="fundoCadastro">
+				<div class="topnav-right">
+    			<table class="table table-borderless table-condensed table-hover"> 
+					<caption>Status</caption>
+				<thead>
+					<tr> 
+						<th></th>
+						<th></th>
+						<th></th> 
+						<th></th> 
+					</tr> 
+				</thead> 
+				<tbody id="tabelaStatus"> 
+					
+				</tbody>
+				
+				</table>
+  				</div>
+  				<div class="margemshow">
+  				<br>
+  				<br>
+  				<br>
+  				<button type="button" id="seriebutton" class="btn btn-secondary">Criar série</button>
+  				<button type="button" id="aulabutton" class="btn btn-secondary">Criar aula</button>
+  				<br>
+  				<br>
+  				<h3>Aulas</h3>
+  				<table class="table table-sm">
+ 
+  				<thead>
+	    			<tr>
+	      				<th scope="col"><center>Descricao</center></th>
+	      				<th scope="col"><center>Data</center></th>
+	      				<th scope="col"><center>Duracao</center></th>
+	      				<th scope="col"><center>Modalidade</center></th>
+	    			</tr>
+  				</thead>
+  				
+  				<tbody id="tabelaAulas"> 
+					
+				</tbody>
+				
+				</table>
+  				</div>
+			</div>
+
+		</div>
+
+		<footer>
+			<div class="container">
+				<p>Desenvolvido por DevGrowth.</p>
+			</div>
+		</footer>
+	</body>
+</html>

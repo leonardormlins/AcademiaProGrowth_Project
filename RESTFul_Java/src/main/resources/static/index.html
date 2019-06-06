@@ -25,8 +25,8 @@
 				$.getJSON(url, function(data) {{
 						
 			
-					if(data.tipo == 0){
-						window.location.href = '/index.html';
+					if(data.tipo == null){
+						alert("Usuario Invalido!");
 					} 
 					else if (data.tipo==0) {
 						parseInt(sessionStorage.setItem("tipo",data.tipo));
@@ -45,7 +45,7 @@
 					}
 					else if (data.tipo==3){
 						parseInt(sessionStorage.setItem("tipo",data.tipo));
-						parseInt(sessionStorage.setItem("email",data.email));
+						parseInt(sessionStorage.setItem("email",data.email));	
 						window.location.href = '/Funcionario.html';
 					}
 				}	

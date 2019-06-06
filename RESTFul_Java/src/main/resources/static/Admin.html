@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Bem vindo!
+		</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href="css/bootstrap.min.css" rel=stylesheet>
+		<script src="js/jquery.js"></script>
+
+
+	<script>
+	
+	$( window ).on( "load", function(){
+
+		var user = sessionStorage.getItem("email");		
+		var ola = "Olá, <b>"+user+"</b>! ";
+		var tipo = "";
+		if(sessionStorage.getItem("tipo")==0) tipo="(Admin) ";
+		if(sessionStorage.getItem("tipo")==1) tipo="(Aluno) ";
+		if(sessionStorage.getItem("tipo")==2) tipo="(Prof) ";
+		var date = new Date();
+		var dma= ('0'+date.getDate()).slice(-2)+"/"+ ('0'+(date.getMonth()+1)).slice(-2)+"/"+date.getFullYear()+" Horas: "+('0'+date.getHours()).slice(-2)+":"+('0'+date.getMinutes()).slice(-2);
+		var itens2 = [];
+		itens2.push("<tr> <td>"+ ola +"</td><td>"+ tipo + "</td><td>"+ dma +"<button id=\"logout\" class=\"logoutClass\" style=\"color:#FF0000\">Logout</button></td></tr>");						
+		$("#tabelaStatus").append(itens2);
+		
+			
+		
+			$.getJSON("/most/aluno/", function(data){
+				var alunos = [];
+				$.each(data, function(i){
+					alunos.push("<tr> <td>"+ this.nome+ "</td><td>"+this.email+ "</td><td>" +this.id + "</td><td>"+this.telefone +"</td></tr>");
+				});	
+				$("#tabelaAlunos").append(alunos);	
+			});
+			$.getJSON("most/aulas/", function(data) {
+				var itens = [];
+				$.each(data, function(i){
+					itens.push("<tr> <td>"+ this.descricao +"</td><td>"+ this.data + "</td><td>"+ this.duracao + "</td><td>"+ this.modalidade + "</td></tr>");
+				});
+				$("#tabelaAulas").append(itens);
+			});
+			$.getJSON("most/cods/", function(data) {
+				document.getElementById('listCodigos').innerHTML = data;
+			});
+			$.getJSON("/most/prof/", function(data){
+				var profs = [];
+				$.each(data, function(i){
+					profs.push("<tr> <td>"+ this.nome+ "</td><td>"+this.email+ "</td><td>"+this.id + "</td><td>"+this.telefone +"</td></tr>");
+				});	
+				$("#tabelaProfs").append(profs);	
+			});
+			$.getJSON("/most/acessos/", function(data){
+				var ac = [];
+				$.each(data, function(i){
+					ac.push("<tr> <td>"+ this.data+ "</td><td>"+this.cpf + "</td><td>"+this.duracao +"</td></tr>");
+				});	
+				$("#tabelaAc").append(ac);	
+			});
+			
+				
+		
+			
+			
+			
+		});
+
+	
+	
+	$( window ).on( "load", function(){
+
+	
+	});
+	
+
+	
+	$(document).ready(function(){
+		$("#bCode").click(function(){
+			var cod = "";
+			$.getJSON("/codigo/novo", function(data){
+			});
+			alert("Codigo Gerado!");
+			location.reload();
+		});
+	});
+	
+	$(document).on('click','.logoutClass',function(e){
+		sessionStorage.removeItem("email");
+		sessionStorage.removeItem("tipo");
+		alert("Sessão Encerrada!");
+		window.location.href = '/index.html';
+	});
+	
+	</script>	
+		
+	</head>
+
+	<body>
+		<header>
+			<div class="topnav-right">
+		    	<table class="table table-borderless table-condensed table-hover"> 
+					<h5>Status</h5>
+					<thead>
+						<tr> 
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>  
+						</tr> 
+					</thead> 
+					<tbody id="tabelaStatus"> 
+					</tbody>	
+					
+				</table>
+		  	</div>
+		</header>
+		<div id="fundo_principalMember">
+			<div id="fundoMember">
+			<div class="margemshow">
+				<br>
+				<button id="bCode" class="btn btn-default">Gerar Codigo de Cadastro</button>
+				<h4>Codigos:</h4>
+				<div id="listCodigos"><b></b></div>
+				<br>
+  				<h3>Aulas</h3>
+  				<table class="table table-sm">
+ 				<tbody id="tabelaAulas"> 
+  				<thead>
+	    			<tr>
+	      				<th scope="col"><center>Descricao</center></th>
+	      				<th scope="col"><center>Data</center></th>
+	      				<th scope="col"><center>Duracao</center></th>
+	      				<th scope="col"><center>Modalidade</center></th>
+	    			</tr>
+  				</thead>	
+				</tbody>
+				</table>
+				
+				<h3>Alunos</h3>
+				
+  				<table class="table table-sm">
+  				<tbody id="tabelaAlunos">
+  				<thead>
+	    			<tr>
+	      				<th scope="col"><center>Nome</center></th>
+	      				<th scope="col"><center>Email</center></th>
+	      				<th scope="col"><center>CPF</center></th>
+	      				<th scope="col"><center>Telefone</center></th>
+	      			</tr>
+  				</thead>
+				</tbody>
+				</table>
+				
+				<h3>Professores</h3>
+				
+  				<table class="table table-sm">
+  				<tbody id="tabelaProfs">
+  				<thead>
+	    			<tr>
+	      				<th scope="col"><center>Nome</center></th>
+	      				<th scope="col"><center>Email</center></th>
+	      				<th scope="col"><center>CPF</center></th>
+	      				<th scope="col"><center>Telefone</center></th>
+	      			</tr>
+  				</thead>
+				</tbody>
+				</table>
+				<a href="cadastroProf.html" class="badge badge-secondary" >Cadastrar Professor</a>
+				<h3>Acessos</h3>
+				
+  				<table class="table table-sm">
+  				<tbody id="tabelaAc">
+  				<thead>
+	    			<tr>
+	      				<th scope="col"><center>Data</center></th>
+	      				<th scope="col"><center>CPF</center></th>
+	      				<th scope="col"><center>Duracao</center></th>
+	      			</tr>
+  				</thead>
+				</tbody>
+				</table>
+				
+				
+				</div>
+			</div>
+			</div>
+		</div>
+
+		<footer>
+			<div class="container">
+				<p>Desenvolvido por DevGrowth.</p>
+			</div>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Bem vindo!
+		</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href="css/bootstrap.min.css" rel=stylesheet>
+		<script src="js/jquery.js"></script>
+
+
+	<script>
+	
+	$( window ).on( "load", function(){
+		
+		
+		var user = sessionStorage.getItem("email");		
+		var ola = "Olá, <b>"+user+"</b>! ";
+		var tipo = "";
+		if(sessionStorage.getItem("tipo")==0) tipo="(Admin) ";
+		if(sessionStorage.getItem("tipo")==1) tipo="(Aluno) ";
+		if(sessionStorage.getItem("tipo")==2) tipo="(Prof) ";
+		var date = new Date();
+		var dma= ('0'+date.getDate()).slice(-2)+"/"+ ('0'+(date.getMonth()+1)).slice(-2)+"/"+date.getFullYear()+" Horas: "+('0'+date.getHours()).slice(-2)+":"+('0'+date.getMinutes()).slice(-2);
+		var itens2 = [];
+		itens2.push("<tr> <td>"+ ola +"</td><td>"+ tipo + "</td><td>"+ dma +"<button id=\"logout\" class=\"logoutClass\" style=\"color:#FF0000\">Logout</button></td></tr>");						
+		$("#tabelaStatus").append(itens2);
+
+		
+		var url = "/gethistseries/"+ user+ "/";
+		
+			$.getJSON(url, function(data) {
+				document.getElementById('objSerie').innerHTML = "<b>Objetivo:</b>" + data.objetivo;
+				var itens = [];
+				$.each(data.exercicios, function(i){
+					itens.push("<tr> <td>"+ this.equipamento + "</td><td>"+ this.musculo + "</td><td>"+ this.repeticao+  "</td></tr>");
+				});
+				$("#tabelaSerie").append(itens);	
+					
+					
+					
+			});
+			
+			
+			
+			
+			
+		});
+	
+	$(document).on('click','.logoutClass',function(e){
+		sessionStorage.removeItem("email");
+		sessionStorage.removeItem("tipo");
+		alert("Sessão Encerrada!");
+		window.location.href = '/index.html';
+	});
+	
+	
+	
+	</script>	
+		
+	</head>
+
+	<body>
+		<header>
+			<div class="Container">
+				<img id="logo" src="css\logo.png">
+			</div>
+
+		</header>
+		
+		<div id="fundo_principal">
+			<div id="fundoCadastro">
+				<div class="topnav-right">				
+    			<table class="table table-borderless table-condensed table-hover"> 
+					<caption>Status</caption>
+				<thead>
+					<tr> 
+						<th></th>
+						<th></th>
+						<th></th> 
+						<th></th> 
+					</tr> 
+				</thead> 
+				<tbody id="tabelaStatus"> 
+				</tbody>
+				</table>
+  				</div>
+  				<div class="margemshow">
+				<table class="table table-sm">
+				<h3>Series</h3>
+				<div id="objSerie"></div>
+				<thead>
+					<tr> 
+						<th>Equipamento</th>
+						<th>Musculo</th> 
+						<th>Repeticao</th> 
+					</tr> 
+				</thead> 
+				
+				<tbody id="tabelaSerie"> 
+					
+				</tbody> 
+				</table>
+				</div>
+		
+		
+		
+
+		
+	</body>
+</html>
