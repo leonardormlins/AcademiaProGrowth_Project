@@ -1,29 +1,31 @@
 package hello;
 
 public class Acesso {
-	private int data;
-	private Pessoa pessoa;
+	private String data;
+	private int cpf;
 	private int duracao;
 	
-	public Acesso(int data, Pessoa pessoa, int duracao) {
-		super();
+	public Acesso(String data, int cpf, int duracao) {
 		this.data = data;
-		this.pessoa = pessoa;
+		this.cpf = cpf;
 		this.duracao = duracao;
 	}
 	
-	public int getData() {
+	public String getData() {
 		return data;
 	}
-	public void setData(int data) {
+	public void setData(String data) {
 		this.data = data;
 	}
-	public Pessoa getPessoa() {
-		return pessoa;
+	
+	public int getCpf() {
+		return cpf;
 	}
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+
+	public void setCpf(int cpf) {
+		this.cpf = cpf;
 	}
+
 	public int getDuracao() {
 		return duracao;
 	}

@@ -7,7 +7,6 @@ public class Exercicio {
 	
 	
 	public Exercicio(String equipamento, String musculo, int repeticao) {
-		super();
 		this.equipamento = equipamento;
 		this.musculo = musculo;
 		this.repeticao = repeticao;

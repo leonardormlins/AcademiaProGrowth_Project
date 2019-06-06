@@ -1,30 +1,32 @@
 package hello;
 
-import java.util.List;
 
 public class Aula {
-	private List<Aluno> aluno;
 	private String descricao;
 	private String data;
 	private String duracao;
-	private Modalidade modalidade;
+	private String modalidade;
+	private String emailProfessor;
 	
-	public Aula(List<Aluno> aluno, String descricao, String data, String duracao, Modalidade modalidade) {
-		super();
-		this.aluno = aluno;
+	public Aula(String descricao, String data, String duracao, String modalidade, String emailProfessor) {
 		this.descricao = descricao;
 		this.data = data;
 		this.duracao = duracao;
 		this.modalidade = modalidade;
+		this.emailProfessor = emailProfessor;
 	}
 	
 	
-	public List<Aluno> getAluno() {
-		return aluno;
+	public String getEmailProfessor() {
+		return emailProfessor;
 	}
-	public void setAluno(List<Aluno> aluno) {
-		this.aluno = aluno;
+
+
+	public void setEmailProfessor(String emailProfessor) {
+		this.emailProfessor = emailProfessor;
 	}
+
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -45,12 +47,12 @@ public class Aula {
 	}
 
 
-	public Modalidade getModalidade() {
+	public String getModalidade() {
 		return modalidade;
 	}
 
 
-	public void setModalidade(Modalidade modalidade) {
+	public void setModalidade(String modalidade) {
 		this.modalidade = modalidade;
 	}
 	

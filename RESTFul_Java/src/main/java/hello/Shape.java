@@ -9,7 +9,6 @@ public class Shape {
 	
 	
 	public Shape(float altura, float peso, float circAbdomen, float igc, String data) {
-		super();
 		this.altura = altura;
 		this.peso = peso;
 		this.circAbdomen = circAbdomen;

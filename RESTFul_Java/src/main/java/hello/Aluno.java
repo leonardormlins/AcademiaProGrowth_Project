@@ -1,27 +1,55 @@
 package hello;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Aluno extends Pessoa {
-	private List<Modalidade> modalidade;
+	private List<Musculacao> musculacoes;
+	private Musculacao musculacaoAtual;
 	private List<Shape> historicoShape;
 	private List<Aula> aulas;
+	private List<Acesso> acessos;
 	
 	
-	public Aluno(int id, String nome, String adress, String email, String telefone,  String senha, char genero, int tipo, List<Modalidade> modalidade,
-			List<Shape> historicoShape, List<Aula> aulas) {
+	public Aluno(int id, String nome, String adress, String email, String telefone,  String senha, char genero, int tipo) {
 		super(id, nome, adress, email, telefone, senha, genero, tipo);
-		this.modalidade = modalidade;
-		this.historicoShape = historicoShape;
-		this.aulas = aulas;
+		this.musculacoes = new LinkedList<Musculacao>();
+		this.musculacaoAtual = null;
+		this.historicoShape = new LinkedList<Shape>();
+		this.aulas = new LinkedList<Aula>();
+		this.acessos = new LinkedList<Acesso>();
 
 	}
-	public List<Modalidade> getModalidade() {
-		return modalidade;
+
+	public List<Aula> getAulas() {
+		return aulas;
 	}
-	public void setModalidade(List<Modalidade> modalidade) {
-		this.modalidade = modalidade;
+
+	public void setAulas(List<Aula> aulas) {
+		this.aulas = aulas;
 	}
+
+	public List<Acesso> getAcessos() {
+		return acessos;
+	}
+
+	public void setAcessos(List<Acesso> acessos) {
+		this.acessos = acessos;
+	}
+
+	public List<Musculacao> getMusculacoes() {
+		return musculacoes;
+	}
+	public void setMusculacoes(List<Musculacao> musculacoes) {
+		this.musculacoes = musculacoes;
+	}
+	public Musculacao getMusculacaoAtual() {
+		return musculacaoAtual;
+	}
+	public void setMusculacaoAtual(Musculacao musculacaoAtual) {
+		this.musculacaoAtual = musculacaoAtual;
+	}
+
 	public List<Shape> getHistoricoShape() {
 		return historicoShape;
 	}

@@ -6,5 +6,7 @@ public class Admin extends Pessoa {
 			int tipo) {
 		super(id, nome, adress, email, telefone, senha, genero, tipo);
 	}
-
+	
+	
+	
 }
