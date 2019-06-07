@@ -43,7 +43,7 @@ Below are described all the functionalities:
 - Users can see your gym progress, analizing your shape history.
 - All users can change their passwords.
  
-*About The Visual"
+*About The Visual*
 
 This aplication has a web interface friendly and simple to use. Have too a nice visual that can call new members to the academy. 
 
