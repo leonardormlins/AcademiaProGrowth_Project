@@ -19,16 +19,12 @@ We build many classes looking for performize our Software. The classes are:
 - Acesso  
 - Aluno
 - Aula
-- Danca
 - Exercicio
 - Funcionario
-- Luta
-- Modalidade
 - Musculacao
 - Pessoa
 - Professor
 - Shape
-- User
 
 *Funcionalities*
 
