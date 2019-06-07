@@ -45,6 +45,6 @@ Below are described all the functionalities:
  
 *About The Visual*
 
-This aplication has a web interface friendly and simple to use. Have too a nice visual that can call new members to the academy. 
+This aplication has a web interface friendly and simple to use. Have too a nice visual that can call new members to the gym. 
 
 
