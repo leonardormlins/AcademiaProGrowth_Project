@@ -60,7 +60,7 @@ public class MainServer {
     
     static void teste() {
     	model.addAluno(new Aluno (123,"Aluno1", "Endereco", "aluno@aluno.com","11", "A", 'M',  1));
-    	model.cadastrarProf("Aluno1", "P", "M", "prof@prof.com", "Endereco", "111", "124", "Diurno", "Professor de musculacao");
+    	model.cadastrarProf("Prof", "P", "M", "prof@prof.com", "Endereco", "111", "124", "Diurno", "Professor de musculacao");
     	model.cadastrarAdmin("Admin", "A", "M", "admin@admin.com", "Endereco", "111", "125");
     }
    
