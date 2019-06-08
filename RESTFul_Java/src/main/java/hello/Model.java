@@ -254,6 +254,7 @@ public class Model {
 							alun.setMusculacaoAtual(musc);
 							musculacaoPendente.remove(musc);
 							alunos.store(alun);
+							alunos.commit();
 							return true;
 							
 						}
