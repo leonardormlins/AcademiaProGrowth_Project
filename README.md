@@ -6,7 +6,7 @@ your date gradle, for example. All the funcionalities and informations are conte
 
 Below the UML Class Diagram:
 
-![alt text](https://github.com/leonardormlins/AcademiaProGrowth_Project/blob/master/ReadMeFiles/Projeto%20Lab%20BD%20III.png)
+![alt text](https://github.com/leonardormlins/AcademiaProGrowth_Project/blob/master/ReadMeFiles/Projeto%20Lab%20BD%20III.jpeg)
 
 The software developed follow the MVC pattern, using Java language. About this pattern we use a class called by Model, that are content our business rules unified and all the back-end funcionalities use this class. Still in this pattern, the Controller class, it's the part of the software that can access directly the java methods and the attributes while the View Class make the user interface. 
 About the front-end, we use the web programming triad: html, css and js.
