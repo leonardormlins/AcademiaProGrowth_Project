@@ -14,12 +14,7 @@ public class Professor extends Funcionario {
 	}
 	
 
-	public List<Aula> getAula() {
-		return aula;
-	}
-	public void setAula(List<Aula> aula) {
-		this.aula = aula;
-	}
+	
 	
 	
 }
