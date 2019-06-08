@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Professor extends Funcionario {
-	private List<Aula> aula;
+	
 	
 	
 	public Professor(int id, String nome, String adress, String email, String telefone, String expediente,
