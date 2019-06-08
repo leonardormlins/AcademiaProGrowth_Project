@@ -15,7 +15,7 @@
 		
 
 		var user = sessionStorage.getItem("email");		
-		var ola = "Ol·, <b>"+user+"</b>! ";
+		var ola = "Ol√°, <b>"+user+"</b>! ";
 		var tipo = "";
 		if(sessionStorage.getItem("tipo")==0) tipo="(Admin) ";
 		if(sessionStorage.getItem("tipo")==1) tipo="(Aluno) ";
@@ -85,7 +85,7 @@
 		$.getJSON(urld, function(data){
 			desmat = data.descricao;
 		});
-		alert("Aula: "+ desmat + " desmatriculada!");
+		alert("Aula desmatriculada!");
 		location.reload();
 	});
 	
@@ -94,7 +94,7 @@
 	$(document).on('click','.logoutClass',function(e){
 		sessionStorage.removeItem("email");
 		sessionStorage.removeItem("tipo");
-		alert("Sess„o Encerrada!");
+		alert("Sess√£o Encerrada!");
 		window.location.href = '/index.html';
 	});
 		
