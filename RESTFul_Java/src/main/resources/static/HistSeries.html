@@ -15,7 +15,7 @@
 		
 		
 		var user = sessionStorage.getItem("email");		
-		var ola = "Ol·, <b>"+user+"</b>! ";
+		var ola = "Ol√°, <b>"+user+"</b>! ";
 		var tipo = "";
 		if(sessionStorage.getItem("tipo")==0) tipo="(Admin) ";
 		if(sessionStorage.getItem("tipo")==1) tipo="(Aluno) ";
@@ -29,28 +29,21 @@
 		
 		var url = "/gethistseries/"+ user+ "/";
 		
-			$.getJSON(url, function(data) {
-				document.getElementById('objSerie').innerHTML = "<b>Objetivo:</b>" + data.objetivo;
-				var itens = [];
-				$.each(data.exercicios, function(i){
-					itens.push("<tr> <td>"+ this.equipamento + "</td><td>"+ this.musculo + "</td><td>"+ this.repeticao+  "</td></tr>");
+			$.each(data, function(i){
+				itens.push("<tr> <td>Objetivo:"+ this.objetivo+ "</td></tr>");
+				$.each(this.exercicios, function(j){
+				itens.push("<tr> <td>"+ this.equipamento+"</td><td>"+ this.musculo + "</td><td>"+ this.repeticao + "</td></tr>");
 				});
-				$("#tabelaSerie").append(itens);	
-					
-					
-					
 			});
 			
-			
-			
-			
-			
+			$("#tabelaSeries").append(itens);
 		});
+	});
 	
 	$(document).on('click','.logoutClass',function(e){
 		sessionStorage.removeItem("email");
 		sessionStorage.removeItem("tipo");
-		alert("Sess„o Encerrada!");
+		alert("Sess√£o Encerrada!");
 		window.location.href = '/index.html';
 	});
 	
@@ -97,7 +90,7 @@
 					</tr> 
 				</thead> 
 				
-				<tbody id="tabelaSerie"> 
+				<tbody id="tabelaSeries"> 
 					
 				</tbody> 
 				</table>
