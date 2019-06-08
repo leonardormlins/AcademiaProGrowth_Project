@@ -2,15 +2,57 @@
 <html>
 	<head>
 		<title>
-			Cadastrar
+			Logar
 		</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script>
+		$(document).ready(function(){
+			
+			$('form').submit(function(e){    
+				
+				e.preventDefault();
+				
+				var email = $('#emailBox').val().trim();
+				
+				var senha = $('#passwordBox').val().trim();
+				
+				var url = "/login/"+email+"/"+senha;
+				
+				$.getJSON(url, function(data) {{
+						
+			
+					if(data == null){
+						alert("Usuario Invalido!");
+					} 
+					else if (data.tipo==0) {
+						parseInt(sessionStorage.setItem("tipo",data.tipo));
+						parseInt(sessionStorage.setItem("email",data.email));
+						window.location.href = '/Admin.html';
+					}
+					else if (data.tipo==1){
+						parseInt(sessionStorage.setItem("tipo",data.tipo));
+						parseInt(sessionStorage.setItem("email",data.email));
+						window.location.href = '/Aluno.html';
+					}
+					else if (data.tipo==2){
+						parseInt(sessionStorage.setItem("tipo",data.tipo));
+						parseInt(sessionStorage.setItem("email",data.email));
+						window.location.href = '/Professor.html';
+					}
+				}	
+						
+				});
+				
+			});
+		});
+	</script>
 	</head>
+	
 
 	<body>
 		<div id="fundoLogar">
 			<div id="logoLogon">
-				<a href="index.html"><img src="css/logo.svg"></a></li>
+				<a href="index.html"><img src="logo.svg"></a></li>
 				<h3 id="tituloLogon2">Logar</h3>	
 				<div id="formBlock2">
 
