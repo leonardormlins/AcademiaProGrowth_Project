@@ -25,7 +25,7 @@
 				$.getJSON(url, function(data) {{
 						
 			
-					if(data.tipo == null){
+					if(data == null){
 						alert("Usuario Invalido!");
 					} 
 					else if (data.tipo==0) {
@@ -43,11 +43,6 @@
 						parseInt(sessionStorage.setItem("email",data.email));
 						window.location.href = '/Professor.html';
 					}
-					else if (data.tipo==3){
-						parseInt(sessionStorage.setItem("tipo",data.tipo));
-						parseInt(sessionStorage.setItem("email",data.email));	
-						window.location.href = '/Funcionario.html';
-					}
 				}	
 						
 				});
@@ -64,14 +59,11 @@
 	<body>
 		<header>
 			<div class="Container">
-				<img id="logo" src="css/logo.svg">
 				<div id = "menuIndex">
 					<nav id="menu">
 						<ul>
 					    	<li><a href="index.html">Home</a></li>
 					        <li><a href="preCadastro.html">Cadastrar</a></li>
-					        <li><a href="logon.html">Login</a></li>
-					        <li><a href="sobre.html">Sobre</a></li>
 					    </ul>
 					</nav>
 				</div>
